@@ -1,10 +1,20 @@
 # AMNG
 
 AMNG Web Application.
-- Angular 4 front end client
-- Java Spring Restful API backend server
+- Angular-cli based Angular 4 front end client
+- Java Spring Boot Restful API backend server
 
-## Deployment
+## *Prerequisites
+
+#### Angular 4
+- NodeJS 6.9.0 or higher
+- NPM 3 or higher
+
+#### Spring Boot
+- Java 1.8
+- Maven
+
+## Quick Start
 
 ### Front end
 
@@ -14,8 +24,8 @@ AMNG Web Application.
 
 ### Back end
 - Go to `server` directory
-- Run `mvn install` to install dependencies
+- Run `mvn clean install` to install dependencies
 - Config Database setting, see details in `server/README.md`.
-- Run `java -jar server-SNAPSHOT**.jar` to run the application.
+- Run `java -jar server-1.3-SNAPSHOT.jar` to run the application.
 
 
