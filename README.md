@@ -9,10 +9,12 @@ AMNG Web Application.
 ### Front end
 
 - Go to `client` directory
+- Run `npm install` to install dependencies
 - Run `ng build --env=prod --aot` to complied artifacts will be store in the `dist/` directory. 
 
 ### Back end
 - Go to `server` directory
+- Run `mvn install` to install dependencies
 - Config Database setting, see details in `server/README.md`.
 - Run `java -jar server-SNAPSHOT**.jar` to run the application.
 
