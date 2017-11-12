@@ -1,0 +1,10 @@
+<carousel>
+  <slide *ngFor="let introduction of introductions; let i = index">
+    <img src="assets/home_pic_{{i+1}}.jpg" alt="First slide" class="img-responsive center-block">
+    <div class="carousel-caption">
+      <h3>{{introduction.name}}</h3>
+      <p>{{introduction.description}}</p>
+    </div>
+  </slide>
+</carousel>
+

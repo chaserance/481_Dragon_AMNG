@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="400" height="400">
+  <style xmlns="http://www.w3.org/2000/svg" type="text/css">
+    .cross{fill:#FF0000;}
+  </style>
+  <path class="cross" d="M 80 0 L 400 320 L 320 400 L 0 80 Z"/>
+  <path class="cross" d="M 320 0 L 0 320 L 80 400 L 400 80 Z"/>
+  Sorry, your browser does not support inline SVG.
+</svg>

@@ -1,0 +1,58 @@
+h1 {
+  text-align: center;
+}
+
+.formError {
+  color: red;
+  font-style: italic;
+}
+
+
+//.alert {
+//  padding: 15px;
+//  background-color: #f44336;
+//  color: white;
+//  margin-bottom: 15px;
+//}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.success {
+  background-color: #4CAF50;
+}
+
+.warning {
+  background-color: #f44336;
+}
+
+
+.tooltip.has-error .tooltip-arrow {
+  left: 10px !important;
+  border-bottom-color: #a94442;
+}
+
+.tooltip.has-error .tooltip-inner {
+  background: #a94442;
+  max-width: 100%;
+}
+
+.form-group {
+  margin-bottom: 35px;
+}
+
+.error-message {
+  color: red;
+}

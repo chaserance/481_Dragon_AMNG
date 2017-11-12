@@ -1,0 +1,61 @@
+<div class="container">
+  <div [appMatchHeight]="'panel'" class="row">
+    <div class="col-xs-12 col-sm-3 hidden-xs hidden-sm">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h1 class="panel-title">Recent Event</h1>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li *ngFor="let event of events">
+              <p>{{event.name}}</p>
+              <p>{{event.time}}</p>
+              <p>{{event.description}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-9">
+      <app-carousel></app-carousel>
+    </div>
+
+  </div>
+  <br/><br/><br/>
+
+  <div class="row" [appMatchHeight]="'panel'">
+    <div class="col-xs-12 col-sm-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h1 class="panel-title">Courses List</h1>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li *ngFor="let course of courses">
+              <h4>{{course.name}}</h4>
+              <p>{{course.description}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h1 class="panel-title">Promotion We have</h1>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li *ngFor="let promotion of promotions">
+              <h4>{{promotion.name}}</h4>
+              <p>{{promotion.description}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

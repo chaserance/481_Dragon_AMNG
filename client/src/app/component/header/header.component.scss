@@ -1,0 +1,50 @@
+$transitionTime: 0.5s;
+
+.nav li {
+  outline: none;
+}
+
+.navbar {
+  -webkit-transition: all $transitionTime ease-out;
+  -moz-transition: all $transitionTime ease-out;
+  -o-transition: all $transitionTime ease-out;
+  -ms-transition: all $transitionTime ease-out;
+  transition: all $transitionTime ease-out;
+
+  .mybrand {
+    -webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+  }
+
+  &.transparent {
+    background-color: transparent;
+    border: none;
+
+    .navbar-toggle {
+      background-color: white;
+      .icon-bar {
+        background-color: black;
+      }
+    }
+
+    .icon-bar:focus{
+      background-color: red;
+    }
+
+    .mybrand:hover {
+      color: black;
+      -webkit-transform:scale(1.2);
+      transform:scale(1.2);
+    }
+
+    ul {
+      li:not(.active):hover {
+        span:not(.navButton) {
+          color: black;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+

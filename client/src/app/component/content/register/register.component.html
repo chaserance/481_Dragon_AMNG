@@ -1,0 +1,226 @@
+<h1 style="text-align: center">Register</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <form name="form" (ngSubmit)="onSubmit()"
+            [formGroup]="form"
+            class="form-signin">
+        <h3 class="form-signin-heading">Welcome</h3>
+        <br />
+
+        <div class="form-group has-feedback" [ngClass]="firstname.dirty?(showError(firstname)? 'has-error' : 'has-success') : ''">
+          <label for="firstname" class="control-label">Firstname</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input class="form-control" type="text" id="firstname" name="firstname"  placeholder="Firstname" formControlName="firstname"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="firstname.dirty?(showError(firstname)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(firstname)"
+               class="alert alert-danger">
+            <div *ngIf="firstname.errors.required">
+              Firstname is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" [ngClass]="lastname.dirty?(showError(lastname)? 'has-error' : 'has-success') : ''">
+          <label for="lastname" class="control-label">Lastname</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input class="form-control" type="text" id="lastname" name="lastname"  placeholder="Lastname" formControlName="lastname"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="lastname.dirty?(showError(lastname)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(lastname)"
+               class="alert alert-danger">
+            <div *ngIf="lastname.errors.required">
+              Lastname is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" [ngClass]="email.dirty?(showError(email)? 'has-error' : 'has-success') : ''">
+          <label for="email" class="control-label">Email</label>
+          <div class="form-hint">It will be used as your username.</div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input class="form-control" type="email" id="email" name="email"  placeholder="Email" formControlName="email"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="email.dirty?(showError(email)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(email)"
+               class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+              Email is required.
+            </div>
+
+            <div *ngIf="email.errors.pattern">
+              Email is not valid.
+            </div>
+
+            <div *ngIf="email.errors.uniqueName">
+              Email is existed.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" [ngClass]="phoneNumber.dirty?(showError(phoneNumber)? 'has-error' : 'has-success') : ''">
+          <label for="phoneNumber" class="control-label">Phone number</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+            <input class="form-control" type="text" id="phoneNumber" name="phoneNumber"  placeholder="Phone number" formControlName="phoneNumber"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="phoneNumber.dirty?(showError(phoneNumber)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(phoneNumber)"
+               class="alert alert-danger">
+            <div *ngIf="phoneNumber.errors.required">
+              Phone number is required.
+            </div>
+
+            <div *ngIf="phoneNumber.errors.pattern">
+              Phone number is not valid.
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="address">
+          <div class="form-group has-feedback" [ngClass]="addressLine1.dirty?(showError(addressLine1)? 'has-error' : 'has-success') : ''">
+            <label for="addressLine1">Address Line 1</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input class="form-control" type="text" id="addressLine1" name="addressLine1"  placeholder="Address Line 1" formControlName="addressLine1"/>
+              <span class="glyphicon form-control-feedback" [ngClass]="addressLine1.dirty?(showError(addressLine1)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+            </div>
+            <div *ngIf="showError(addressLine1)"
+                 class="alert alert-danger">
+              <div *ngIf="addressLine1.errors.required">
+                Address Line 1 is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="addressLine2.dirty?(showError(addressLine2)? 'has-error' : 'has-success') : ''">
+            <label for="addressLine2">Address Line 2</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input class="form-control" type="text" id="addressLine2" name="addressLine2"  placeholder="Address Line 2" formControlName="addressLine2"/>
+              <span class="glyphicon form-control-feedback" [ngClass]="addressLine2.dirty?(showError(addressLine2)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="city.dirty?(showError(city)? 'has-error' : 'has-success') : ''">
+            <label for="city">City</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input class="form-control" type="text" id="city" name="city"  placeholder="City" formControlName="city"/>
+              <span class="glyphicon form-control-feedback" [ngClass]="city.dirty?(showError(city)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+            </div>
+            <div *ngIf="showError(city)"
+                 class="alert alert-danger">
+              <div *ngIf="city.errors.required">
+                City is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="state.dirty?(showError(state)? 'has-error' : 'has-success') : ''">
+            <label for="state">State</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+              <select id="state" name="state" class="form-control" formControlName="state">
+                <option value="" disabled selected>Please select your state</option>
+                <option *ngFor="let state of stateKeys()" value="{{state}}">{{state | capitalize}}</option>
+              </select>
+              <span class="glyphicon form-control-feedback" [ngClass]="state.dirty?(showError(state)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+            </div>
+            <div *ngIf="showError(state)"
+                 class="alert alert-danger">
+              <div *ngIf="state.errors.required">
+                State is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="zipCode.dirty?(showError(zipCode)? 'has-error' : 'has-success') : ''">
+            <label for="zipCode">Zip Code</label>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <input class="form-control" type="text" id="zipCode" name="zipCode"  placeholder="Zip Code" formControlName="zipCode"/>
+              <span class="glyphicon form-control-feedback" [ngClass]="zipCode.dirty?(showError(zipCode)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+            </div>
+            <div *ngIf="showError(zipCode)"
+                 class="alert alert-danger">
+              <div *ngIf="zipCode.errors.required">
+                Zip Code is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" [ngClass]="password.dirty?(showError(password)? 'has-error' : 'has-success') : ''">
+          <label for="password" class="control-label">Password</label>
+          <div class="form-hint">To follow Strong Password policy, you are required to use a sufficiently strong password. Password must be more than 8 characters.</div>
+          <div class="strength-meter">
+            <div class="strength-meter-fill" [ngClass]="getCurrentPasswordStrength(password.errors)"></div>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input class="form-control" type="password" id="password" name="password" placeholder="Password" formControlName="password"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="password.dirty?(showError(password)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(password)"
+               class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+
+            <div *ngIf="password.errors.passwordInvalid">
+              <div *ngFor="let msg of password.errors.passwordInvalid">
+                 * {{msg}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" [ngClass]="confirmPassword.dirty?((showError(confirmPassword) || form.errors?.mismatchedFields)? 'has-error' : 'has-success') : ''">
+          <label for="confirmPassword" class="control-label">Confirm Password</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword"  placeholder="Confirm Password" formControlName="confirmPassword"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="confirmPassword.dirty?((showError(confirmPassword) || form.errors?.mismatchedFields)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(confirmPassword) || form.errors?.mismatchedFields"
+               class="alert alert-danger">
+            <div *ngIf="confirmPassword.errors?.required">
+              Confirm Password is required.
+            </div>
+
+            <div *ngIf="form.errors?.mismatchedFields">
+              Passwords do not match.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-lg btn-success btn-block" [disabled]="loading || !form.valid">Register</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+
+        <div  *ngIf="error.length > 0"  align="center" class="alert alert-danger">
+          <div *ngIf="error.length === 1">
+            <span class="closebtn" (click)="closeAlert()">×</span>
+            <div class="error-message" *ngFor="let e of error">
+              <b>{{e | capitalize}}</b> <br/>
+            </div>
+          </div>
+          <div *ngIf="error.length > 1">
+            <span class="closebtn" (click)="closeAlert()">×</span>
+            <div class="error-message" *ngFor="let e of error">
+              <b>{{e.field | capitalize}}</b> : <u>{{e.message}}</u> <br/>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

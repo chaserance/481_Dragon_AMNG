@@ -1,0 +1,49 @@
+footer {
+  background-color:  #66b077;
+  padding: 15px;
+  text-align: center;
+}
+
+h3, p, a {
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+a  {
+  font-weight: normal;
+  text-decoration: none;
+}
+
+p {
+  font-weight: normal;
+}
+
+.copyright p{
+  text-align: center;
+}
+
+$footLogoHeight: 200px;
+
+.foot-logo {
+
+  height: $footLogoHeight;
+
+  p {
+    margin: 18px;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 40px
+  }
+}
+
+.Uppercase {
+  color: black;
+}
+
+.about-list {
+
+  p {
+    padding-left: 10px;
+  }
+}

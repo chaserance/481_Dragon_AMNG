@@ -1,0 +1,20 @@
+$sideBlockHeight:500px;
+$blockBodyHeight:400px;
+$blockPadding:30px;
+
+h1 {
+  //text-align: center;
+  //font-family: 'Orbitron';
+  font-weight: bold;
+}
+
+
+
+.side-panel {
+  min-height: $sideBlockHeight * 13/12;
+}
+
+.panel-heading {
+  background-color:  #66b077;
+  color: black;
+}

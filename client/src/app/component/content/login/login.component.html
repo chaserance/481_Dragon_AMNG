@@ -1,0 +1,65 @@
+<h1>Sign In</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <button routerLink="/register" class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
+
+      <form name="form" (ngSubmit)="login()"
+            [formGroup]="form"
+            class="form-signin">
+        <h3 class="form-signin-heading">Welcome</h3>
+        <br />
+        <!--<div align="center" class="alert success">-->
+        <!--<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>-->
+        <!--<p>You have successfully logout!</p>-->
+        <!--</div>-->
+        <div class="form-group has-feedback" [ngClass]="username.touched?(showError(username)? 'has-error' : 'has-success') : ''">
+          <label for="username" class="control-label">Username</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input class="form-control" type="email" id="username" name="username"  placeholder="Username" formControlName="username"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="username.touched?(showError(username)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(username)"
+               class="alert alert-danger">
+
+            <div *ngIf="username.errors.required">
+              Username is required.
+            </div>
+            <div *ngIf="username.errors.pattern">
+              Username has to be an valid email.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback" [ngClass]="password.touched?(showError(password)? 'has-error' : 'has-success') : ''">
+          <label for="password" class="control-label">Password</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input class="form-control" type="password" id="password" name="password" placeholder="Password" formControlName="password"/>
+            <span class="glyphicon form-control-feedback" [ngClass]="password.touched?(showError(password)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
+          </div>
+          <div *ngIf="showError(password)"
+               class="alert alert-danger">
+
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-lg btn-success btn-block" [disabled]="loading || !form.valid">Login</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+
+        <div  *ngIf="error" align="center" class="alert alert-danger">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
+          <p class="error-message">{{error}}</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
