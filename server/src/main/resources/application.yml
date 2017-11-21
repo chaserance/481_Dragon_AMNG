@@ -57,16 +57,4 @@ jwt:
   tokenExpirationTime: 120 # Number of minutes
   refreshTokenExpTime:  4320 # Minutes
   tokenIssuer: https://prototype.whiletrue.cc
-  tokenSigningKey: MIICWwIBAAKBgQC+r62ugSaGGwLgBZIix8J4DBxEnG04jM1X2Xw+5lp7SZBIcW2E\
-                   Ozaz7cZsF9MU5Dl8I3mgpZhbJ6NrxGzlxFwwqBOl7xVUZ1/y/hAKP7pVSNndI0mT\
-                   nuJAzD5OMJFtZHqf33gJDRzdpMzw3APT5qT7VU4EmIKbUKmU1SZ5svEgqQIDAQAB\
-                   AoGAUlptGECO8rwXsci2JG9Bfbc9PiSQxyuIQ7iaAFBcI4LR3XefZMxuA6ddWrGv\
-                   aAZpDUQE82yRME0eNxzOKy1y4pGsZUQidYAUS/BS5JdxK93Nj3ayHLI9kM51b0Yi\
-                   KaQFM6F3r2HNJcsFUScufUe+uOOnz7SA4YUg869hvJNs9kECQQDm9o4Tc+HJLRsH\
-                   Cu+mtm2S/PTEcAQC1z2+0YClTXUUSxsJLB9pxjVKJOMbLlj3D5elNqho5AXCTNdd\
-                   Pcaiw9xDAkEA01tnAxFen9i49Efq5KYZpWzHVkwk6mKubi69ql27MBHIgNAHghXm\
-                   zAMdH+oiUG8IyR7a2DTjW7CYRhQBc6d2owJAae0AIinOjr6SG7vHR7V5MaWz+HfL\
-                   TyY6Wk6paqbIoIMFpkJHMfLGs/eQ9QFfqgfLq+kSefDCN2eYilnvxOyBEwJAHozq\
-                   se3T0KUh7uVqVYyQznGPyrCM8Xg8IF8POU39HbCkW8I2I56I0tpsXk2YkinKik+0\
-                   cGYMqxc2m4KOxyngowJABCx/yXq7on7XyYd0fGYUppwmTEJkU6IDNnlVgIZaYFo4\
-                   N8D85HuIZOQLXeYBTMuRgczi+Uwd6XQhqZDyWtsBMA==
+  tokenSigningKey: keyOnYouChoice
