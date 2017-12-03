@@ -11,6 +11,12 @@ import {TeacherComponent} from './component/content/teacher/teacher.component';
 import {AdminComponent} from './component/content/admin/admin.component';
 import {TeacherAuthguard} from './service/teacher.authguard';
 import {AdminAuthguard} from './service/admin.authguard';
+import { ProfileComponent } from './component/content/profile/profile.component';
+import { ProfileEditComponent } from './component/content/profile/profile-edit/profile-edit.component';
+import { ChildComponent } from './component/content/child/child.component';
+import { AddChildComponent } from './component/content/child/add-child/add-child.component';
+import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
+import { CoursesComponent } from './component/content/courses/courses.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,7 +26,13 @@ const routes: Routes = [
   // { path: 'profile', component: ProfileComponent, canActivate: [CanActivateAuthGuard] },
   { path: 'teacher', component: TeacherComponent, canActivate: [TeacherAuthguard] },
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthguard] },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'child', component: ChildComponent },
+  { path: 'profile/edit', component: ProfileEditComponent },
+  { path: 'child/add', component: AddChildComponent },
+  { path: 'course/registration', component: CourseRegistrationComponent },
+  { path: 'courses', component: CoursesComponent }
 ];
 
 @NgModule({
