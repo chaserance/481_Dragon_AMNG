@@ -1,55 +1,101 @@
 package com.dragon.server.controller;
 
+
+import com.dragon.server.common.ErrorCode;
+import com.dragon.server.common.ErrorResponse;
+import com.dragon.server.entity.Session;
 import com.dragon.server.entity.User;
-import com.dragon.server.service.UserService;
+import com.dragon.server.model.UserDto;
+import com.dragon.server.repository.SessionRepository;
+import com.dragon.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
-@RestController
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+
+@RepositoryRestController
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
-//    @PostAuthorize("(returnObject.getBody() == null) or returnObject.getBody().username == principal.username or hasRole('ADMIN')")
-//    @RequestMapping(value = "/api/user", method = RequestMethod.GET)
-//    public ResponseEntity<?> getuserByname(@RequestParam(value="username") String username) {
-//        User user = userService.getByUsername(username).get();
-//        if(user == null)
-//            return ResponseEntity.notFound().build();
-//        return ResponseEntity.ok(user);
-//    }
-//
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
-//    public ResponseEntity<?> getAllUser() {
-//        List<User> users = userService.findAll();
-//        if(users.isEmpty())
-//            return ResponseEntity.notFound().build();
-//        return ResponseEntity.ok(users);
-//    }
+    @Autowired
+    private SessionRepository sessionRepository;
 
-    @RequestMapping(value = "/user-exist", method = RequestMethod.GET)
-    public Map isExist(@RequestParam(value="email") String email) {
-        Optional<User> user = userService.getByUsername(email);
-        Map<String, Boolean> map = new HashMap<>();
-        final String key = "exist";
-        if(user.isPresent()) {
-            map.put(key, true);
-        } else {
-            map.put(key, false);
-        }
-        return map;
+
+    @RequestMapping(value = "/users/me", method = RequestMethod.GET)
+    public ResponseEntity me(Authentication authentication) {
+        User me = userRepository.findByUsername(authentication.getName()).get();
+
+        Resource<User> resource = new Resource<>(me);
+
+        resource.add(linkTo(methodOn(UserController.class).me(authentication)).withSelfRel());
+
+        resource.add(linkTo(methodOn(UserController.class).usersSessions(me.getId())).withRel("sessions"));
+
+        return ResponseEntity.ok(resource);
     }
+
+    @RequestMapping(value = "/users/{id}/sessions", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity usersSessions(@PathVariable(name = "id") Long id) {
+        List<Session> sessionList = sessionRepository.findByTeacherId(id);
+
+        Resources<Session> resources = new Resources<>(sessionList);
+
+        resources.add(linkTo(methodOn(UserController.class).usersSessions(id)).withSelfRel());
+        return ResponseEntity.ok(resources);
+    }
+
+    @RequestMapping(value = "/users", method = {RequestMethod.POST})
+    @ResponseBody
+    public ResponseEntity disablePostByUserEndpoint() {
+        final ErrorResponse apiError = ErrorResponse.of("", ErrorCode.METHOD_NOT_SUPOORTED, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(apiError, HttpStatus.METHOD_NOT_ALLOWED);
+    }
+
+    @RequestMapping(value = "/users/{id}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+    @ResponseBody
+    public ResponseEntity updateUserInfo(UserDto userDto, @PathVariable(name = "id") Long id) {
+        User user = verifyUser(id);
+        userRepository.save(userDto.getUpdatedUser(user));
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    /**
+     * Verify and return the User given a userId.
+     *
+     * @param userId
+     * @return the found User
+     * @throws NoSuchElementException if no User found.
+     */
+    private User verifyUser(Long userId) throws NoSuchElementException {
+        User user = userRepository.findOne(userId);
+        if (user == null) {
+            throw new NoSuchElementException("User does not exist " + userId);
+        }
+        return user;
+    }
+
+    /**
+     * Exception handler if NoSuchElementException is thrown in this Controller
+     *
+     * @param ex
+     * @return Error message String.
+     */
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity return404(NoSuchElementException ex) {
+        final ErrorResponse apiError = ErrorResponse.of(ex.getLocalizedMessage(), ErrorCode.RESOURCE_NOT_FOUND, HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity(apiError, HttpStatus.NOT_FOUND);
+
+    }
+
 }

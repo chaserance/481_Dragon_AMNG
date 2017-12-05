@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -42,6 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public String TOKEN_REFRESH_ENTRY_POINT;
 
     public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
+    public static final String PROGRAMS_ENDPOINT = "/api/programs";
+    public static final String COURSES_ENDPOINT = "/api/courses";
+    public static final String PROMOTION_ENDPOINT = "/api/promotions";
 
     @Autowired
     private RestAuthenticationEntryPoint authenticationEntryPoint;
@@ -106,6 +110,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(FORM_BASED_REGISTER_ENTRY_POINT).permitAll() // Register end-point
                 .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll() // Login end-point
                 .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll() // Token refresh end-point
+                .antMatchers(HttpMethod.GET, PROGRAMS_ENDPOINT, COURSES_ENDPOINT, PROMOTION_ENDPOINT).permitAll() // permit for advertisement
                 .and()
                 .authorizeRequests()
                 .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points

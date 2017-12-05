@@ -22,16 +22,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Refresh token & Registration
@@ -62,7 +62,7 @@ public class AuthenticationController {
         }
 
         String subject = refreshToken.getSubject();
-        User user = userService.getByUsername(subject).orElseThrow(() -> new UsernameNotFoundException("User not found: " + subject));
+        User user = userService.findByUsername(subject).orElseThrow(() -> new UsernameNotFoundException("User not found: " + subject));
 
         if (user.getRoles() == null) throw new InsufficientAuthenticationException("User has no roles assigned");
 
@@ -86,5 +86,18 @@ public class AuthenticationController {
             return new ResponseEntity<>(null, HttpStatus.CREATED);
         ErrorResponse errorResponse = ErrorResponse.of("User already existed", ErrorCode.ARGUMENT_NOT_VALID, HttpStatus.BAD_REQUEST);
         return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "${jwt.route.register} + /exist", method = RequestMethod.GET)
+    public Map isExist(@RequestParam(value="email") String email) {
+        Optional<User> user = userService.findByUsername(email);
+        Map<String, Boolean> map = new HashMap<>();
+        final String key = "exist";
+        if(user.isPresent()) {
+            map.put(key, true);
+        } else {
+            map.put(key, false);
+        }
+        return map;
     }
 }

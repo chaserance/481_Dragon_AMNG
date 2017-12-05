@@ -14,6 +14,7 @@ public class RoleServiceImpl implements RoleService {
 
     private final static String ROLE_ADMIN = "ROLE_ADMIN";
     private final static String ROLE_USER = "ROLE_USER";
+    private final static String ROLE_TEACHER = "ROLE_TEACHER";
 
     @Override
     public boolean create(Role role) {
@@ -30,6 +31,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getAdminRole() {
         return roleRepository.findByName(ROLE_ADMIN);
+    }
+
+    @Override
+    public Role getTeacherRole() {
+        return roleRepository.findByName(ROLE_TEACHER);
     }
 
     @Override

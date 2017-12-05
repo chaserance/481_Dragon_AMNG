@@ -65,14 +65,13 @@ public class User {
     private Set<Role> roles;
 
     // Start at this line, instance variables are role dependent (nullable)
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
-    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Child> children;
 
     @OneToOne(cascade = {CascadeType.REMOVE})
     private Bill bill;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
     private Set<Session> sessions;
 
     public User() {

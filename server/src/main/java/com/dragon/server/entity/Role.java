@@ -21,10 +21,6 @@ public class Role implements GrantedAuthority {
     @NotNull
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    @JsonBackReference
-    private Set<User> users;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "ROLE_PRIVILEGE",
@@ -52,14 +48,6 @@ public class Role implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
     public void addPrivilege(Privilege privilege) {

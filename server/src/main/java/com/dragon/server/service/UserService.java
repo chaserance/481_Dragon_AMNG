@@ -10,7 +10,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    Optional<User> getByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     boolean create(User user);
 
@@ -21,4 +21,10 @@ public interface UserService {
     void addRole(User user, Role role);
 
     void removeRole(User user, Role role);
+
+    boolean isParent(User user);
+
+    boolean isTeacher(User user);
+
+    boolean isAdmin(User user);
 }

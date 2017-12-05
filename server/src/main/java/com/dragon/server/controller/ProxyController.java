@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,20 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ProxyController {
 
-    @RequestMapping("/404")
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
     public String NOT_FOUND(HttpServletRequest request) {
         if(WebUtil.isAjax(request)) {
             return "forward:/ajax404";
         }
         return "forward:/";
-    }
-
-    @RequestMapping("/401")
-    public String UNAUTHORIZED(HttpServletRequest request) {
-        if(WebUtil.isAjax(request)) {
-            return "forward:/api/401";
-        }
-        return "redirect:/";
     }
 
     @RequestMapping("/ajax404")

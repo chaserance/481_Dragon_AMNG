@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class EducationalPerformance {
 
     @EmbeddedId
-    private EducationalPerformancePk id;
+    private EducationalPerformancePk pk;
 
     @Column(name = "FEEDBACK")
     private String feedBack;
@@ -21,12 +21,18 @@ public class EducationalPerformance {
     public EducationalPerformance() {
     }
 
-    public EducationalPerformancePk getId() {
-        return id;
+    public EducationalPerformance(EducationalPerformancePk pk, String feedBack, String grade) {
+        this.pk = pk;
+        this.feedBack = feedBack;
+        this.grade = grade;
     }
 
-    public void setId(EducationalPerformancePk id) {
-        this.id = id;
+    public EducationalPerformancePk getPk() {
+        return pk;
+    }
+
+    public void setPk(EducationalPerformancePk pk) {
+        this.pk = pk;
     }
 
     public String getFeedBack() {
@@ -43,5 +49,25 @@ public class EducationalPerformance {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EducationalPerformance that = (EducationalPerformance) o;
+
+        if (pk != null ? !pk.equals(that.pk) : that.pk != null) return false;
+        if (feedBack != null ? !feedBack.equals(that.feedBack) : that.feedBack != null) return false;
+        return grade != null ? grade.equals(that.grade) : that.grade == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = pk != null ? pk.hashCode() : 0;
+        result = 31 * result + (feedBack != null ? feedBack.hashCode() : 0);
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        return result;
     }
 }

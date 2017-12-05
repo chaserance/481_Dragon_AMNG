@@ -25,6 +25,10 @@ public class Course {
     @NotNull
     private Boolean enabled;
 
+    @Column(name = "TUITION")
+    @NotNull
+    private Double tuition;
+
     @ManyToOne
     private Program program;
 
@@ -72,6 +76,14 @@ public class Course {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Double getTuition() {
+        return tuition;
+    }
+
+    public void setTuition(Double tuition) {
+        this.tuition = tuition;
     }
 
     public Program getProgram() {
