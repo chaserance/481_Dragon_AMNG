@@ -1,8 +1,7 @@
 import {Address} from './address';
-import {Authority} from './authority';
+import {HateoasResult} from './hateoas-result';
 
-export interface User {
-  id: number;
+export interface User extends HateoasResult {
   username: string;
   password: string;
   firstname: string;
@@ -12,5 +11,4 @@ export interface User {
   registrationDate: Date;
   address: Address;
   phoneNumber: string;
-  roles: Array<Authority>;
 }

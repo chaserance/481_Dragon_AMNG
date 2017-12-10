@@ -33,6 +33,8 @@ import { TeacherComponent } from './component/content/teacher/teacher.component'
 import { AdminComponent } from './component/content/admin/admin.component';
 import {TeacherAuthguard} from './service/teacher.authguard';
 import {AdminAuthguard} from './service/admin.authguard';
+import {ProgramService} from './service/program.service';
+import {CourseService} from './service/course.service';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import {AdminAuthguard} from './service/admin.authguard';
   providers: [
     UserService,
     AuthService,
+    ProgramService,
+    CourseService,
     ValidatorsService,
     LoginActiveAuthGuard,
     CanActivateAuthGuard,

@@ -10,8 +10,11 @@ export class AdminAuthguard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isAdmin) {
       return true;
+    } else if (this.authService.isAuthenticated) {
+      // this.router.navigate(['/']);
+      console.log('403 from admin');
     }
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     return false;
   }
 }

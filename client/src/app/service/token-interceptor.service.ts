@@ -11,10 +11,14 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    let type = 'application/json';
+    if (request.body && (typeof request.body === 'string')) {
+      type = 'text/uri-list';
+    }
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.auth.getToken()}`,
-        'Content-Type': 'application/json',
+        'Content-Type': type,
         'X-Requested-With': 'XMLHttpRequest'
       }
     });

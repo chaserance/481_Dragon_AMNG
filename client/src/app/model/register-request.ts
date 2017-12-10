@@ -1,6 +1,6 @@
 import { Address } from './address';
 
-export interface LoginRequest {
+export interface RegisterRequest {
   firstname: string;
   lastname: string;
   email: string;

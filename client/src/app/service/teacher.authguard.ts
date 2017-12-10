@@ -10,8 +10,10 @@ export class TeacherAuthguard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isTeacher) {
       return true;
+    } else if (this.authService.isAuthenticated) {
+      console.log('403 from teacher');
     }
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
     return false;
   }
 }

@@ -8,6 +8,8 @@ import 'rxjs/add/observable/throw';
 
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import {Router} from '@angular/router';
+import {User} from '../model/user';
+import {UserService} from './user.service';
 
 
 @Injectable()
@@ -21,10 +23,12 @@ export class AuthService {
     'X-Requested-With': 'XMLHttpRequest'
   });
   private userKey = 'currentUser';
+  private me: User;
 
   constructor(
     private http: Http,
-    private router: Router) { }
+    private router: Router,
+    private userService: UserService) { }
 
   get firstname() {
     const currentUser = JSON.parse(localStorage.getItem(this.userKey));
@@ -42,7 +46,7 @@ export class AuthService {
       .map((response: Response) => {
         // store response in local storage to keep user logged in between page refreshes
         localStorage.setItem(this.userKey, JSON.stringify(response.json()));
-
+        this.getMe();
         // this.getLoggedInName.emit(username);
       }).catch((error: any) => {
           return Observable.throw(error.json().message || 'Server error');
@@ -66,6 +70,7 @@ export class AuthService {
           const updateUser = JSON.parse(localStorage.getItem(this.userKey));
           updateUser.access_token = response.json().token;
           localStorage.setItem(this.userKey, JSON.stringify(updateUser));
+          this.getMe();
         }).catch((error: any) => {
           console.log(error);
           return Observable.throw(error.message || 'Server error');
@@ -76,6 +81,7 @@ export class AuthService {
   logout(): void {
     // clear token remove user from local storage to log user out
     localStorage.removeItem(this.userKey);
+    this.me = null;
   }
 
   getToken(): string {
@@ -113,7 +119,7 @@ export class AuthService {
   get isTeacher() {
     if (this.isAuthenticated) {
       const roles = this.getRoles();
-      return roles.find(role => (role === 'ROLE_TEACHER' || role === 'ROLE_ADMIN'));
+      return roles.find(role => (role === 'ROLE_TEACHER'));
     }
     return false;
 
@@ -124,5 +130,10 @@ export class AuthService {
       return roles.find(role => (role === 'ROLE_ADMIN'));
     }
     return false;
+  }
+
+  getMe(): void {
+    this.userService.getMe()
+      .subscribe(user => this.me = user);
   }
 }

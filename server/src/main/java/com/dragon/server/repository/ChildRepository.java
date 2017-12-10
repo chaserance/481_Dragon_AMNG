@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(path = "children")
+@RepositoryRestResource(path = "children", collectionResourceRel="result_array")
 public interface ChildRepository extends JpaRepository<Child, Long> {
 
 }
