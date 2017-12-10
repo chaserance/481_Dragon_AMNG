@@ -1,6 +1,6 @@
- import {Component, OnInit} from '@angular/core';
- import { FormBuilder, Validators } from '@angular/forms';
- import {AuthService} from '../../../service/auth.service';
+import {Component, OnInit} from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import {AuthService} from '../../../service/auth.service';
 import {Response} from '@angular/http';
 import {Router} from '@angular/router';
 
@@ -24,12 +24,8 @@ import {UserService} from '../../../service/user.service';
   form: any;
   loading = false;
   error = [];
-  states = State;
 
-  stateKeys(): Array<string> {
-    const keys = Object.keys(this.states);
-    return keys.slice(keys.length / 2);
-  }
+
 
    constructor(
     private fb: FormBuilder,
