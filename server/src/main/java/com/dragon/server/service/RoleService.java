@@ -9,6 +9,8 @@ public interface RoleService {
 
     Role getAdminRole();
 
+    Role getTeacherRole();
+
     Role getUserRole();
 
     void addPrivilege(Role role, Privilege privilege);

@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getByUsername(String username) {
+    public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
@@ -76,6 +76,24 @@ public class UserServiceImpl implements UserService {
             userInDB.get().removeRole(role);
             userRepository.save(userInDB.get());
         }
+    }
+
+    @Override
+    public boolean isParent(User user) {
+        Role parent = roleService.getUserRole();
+        return user.getRoles().contains(parent);
+    }
+
+    @Override
+    public boolean isTeacher(User user) {
+        Role teacher = roleService.getTeacherRole();
+        return user.getRoles().contains(teacher);
+    }
+
+    @Override
+    public boolean isAdmin(User user) {
+        Role admin = roleService.getAdminRole();
+        return user.getRoles().contains(admin);
     }
 
     private Optional<User> getUserByUsername(User user) {

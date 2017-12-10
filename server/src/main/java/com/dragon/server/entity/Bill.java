@@ -27,6 +27,9 @@ public class Bill {
     @OneToOne
     private User user;
 
+    @OneToOne
+    private Promotion promotion;
+
     public Bill() {
     }
 
@@ -45,6 +48,9 @@ public class Bill {
     }
 
     public Double getAmount() {
+        if(promotion != null) {
+            return amount * promotion.getRatio();
+        }
         return amount;
     }
 
@@ -74,5 +80,13 @@ public class Bill {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 }

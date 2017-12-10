@@ -35,7 +35,6 @@ public class AjaxAwareAuthenticationSuccessHandler implements AuthenticationSucc
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         JwtUser jwtUser = (JwtUser) authentication.getPrincipal();
-
         JwtToken accessToken = tokenFactory.createAccessJwtToken(jwtUser);
         JwtToken refreshToken = tokenFactory.createRefreshToken(jwtUser);
 

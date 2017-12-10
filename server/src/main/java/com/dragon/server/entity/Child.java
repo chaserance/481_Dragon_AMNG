@@ -36,9 +36,9 @@ public class Child {
     @NotNull
     private StudentLevel currentLevel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PARENT_ID")
-    private User parent;
+    private User user;
 
     public Child() {
     }
@@ -107,11 +107,11 @@ public class Child {
         this.currentLevel = currentLevel;
     }
 
-    public User getParent() {
-        return parent;
+    public User getUser() {
+        return user;
     }
 
-    public void setParent(User parent) {
-        this.parent = parent;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

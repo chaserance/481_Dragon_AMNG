@@ -40,15 +40,6 @@ public class Session {
     public Session() {
     }
 
-    public Session(String sessionName, String sessionDescription, DatePeriod period, Schedule schedule, User teacher, Course course) {
-        this.sessionName = sessionName;
-        this.sessionDescription = sessionDescription;
-        this.period = period;
-        this.schedule = schedule;
-        this.teacher = teacher;
-        this.course = course;
-    }
-
     public Long getId() {
         return id;
     }
