@@ -33,6 +33,15 @@ import { TeacherComponent } from './component/content/teacher/teacher.component'
 import { AdminComponent } from './component/content/admin/admin.component';
 import {TeacherAuthguard} from './service/teacher.authguard';
 import {AdminAuthguard} from './service/admin.authguard';
+import { ChildComponent } from './component/content/child/child.component';
+import { ProfileEditComponent } from './component/content/profile/profile-edit/profile-edit.component';
+import { AddChildComponent } from './component/content/child/add-child/add-child.component';
+import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
+import { CoursesComponent } from './component/content/courses/courses.component';
+import { SessionsComponent } from './component/content/teacher/sessions/sessions.component';
+import { StudentDetailComponent } from './component/content/teacher/student-detail/student-detail.component';
+import { SessionDetailComponent } from './component/content/teacher/session-detail/session-detail.component';
+import { SessionService } from './service/session.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +57,16 @@ import {AdminAuthguard} from './service/admin.authguard';
     CapitalizePipe,
     ProfileComponent,
     TeacherComponent,
-    AdminComponent
+    AdminComponent,
+    ChildComponent,
+    ProfileEditComponent,
+    AddChildComponent,
+    CourseRegistrationComponent,
+    CoursesComponent,
+    SessionsComponent,
+    StudentDetailComponent,
+    SessionDetailComponent,
+    TeacherComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +92,7 @@ import {AdminAuthguard} from './service/admin.authguard';
     CanActivateAuthGuard,
     TeacherAuthguard,
     AdminAuthguard,
+    SessionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

@@ -1,0 +1,23 @@
+<div class="container">
+  <button class="btn btn-primary" routerLink="/teacher">Back to My Sessions</button>
+</div>
+
+<div *ngIf="session" class="container">
+  <h3>Students in {{session.name}} (ID:{{session.id}})</h3>           
+  <table class="table table table-hover">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of session.students" (click)="onSelectStudent(student)">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-student-detail [student]="selectedStudent" [session]="session"></app-student-detail>
