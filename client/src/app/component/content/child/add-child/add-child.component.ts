@@ -24,10 +24,9 @@ import {UserService} from '../../../service/user.service';
   form: any;
   loading = false;
   error = [];
+  genders = Gender;
 
-
-
-   constructor(
+    constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
@@ -38,7 +37,8 @@ import {UserService} from '../../../service/user.service';
   ngOnInit() {
     this.form = this.fb.group({
       firstname: ['', Validators.required],
-      lastname: ['', Validators.required]
+      lastname: ['', Validators.required],
+      gender: ['', Validators.required]
 
     },);
    }
@@ -77,6 +77,7 @@ import {UserService} from '../../../service/user.service';
 
   get firstname() { return this.form.get('firstname'); }
   get lastname() { return this.form.get('lastname'); }
+  get gender() { return this.form.get('gender'); }
 
 
 }

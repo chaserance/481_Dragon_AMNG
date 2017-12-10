@@ -48,28 +48,28 @@
 
 
         <p></p>
-        <label class="">Gender</label>
-        <div class="row">
-
+        <div class="form-group has-feedback" [ngClass]="state.dirty?(showError(gender)? 'has-error' : 'has-success') : ''">
+          <label for="gender" class="control-label">Gender</label>
+          <div class="input-group">
           <div class="col-sm-2">
             <label class="radio-inline">
-              <input type="radio" id="femaleRadio" name="radio" value="Female">Female
+            <input type="radio" id="gender" name="radio" value="Female" formControlName="gender"  >Female
+
+            <input type="radio" id="gender" name="radio" value="Male" formControlName="gender"  >Male
+
+
+            <input type="radio" id="gender" name="radio" value="Other" formControlName="gender" >Other
             </label>
           </div>
-
-          <div class="col-sm-2">
-            <label class="radio-inline">
-              <input type="radio" id="maleRadio" name="radio" value="Male">Male
-            </label>
-          </div>
-
-          <div class="col-sm-2">
-            <label class="radio-inline">
-              <input type="radio" id="otherRadio" name="radio" value="Other">Other
-            </label>
-          </div>
-
+            <span class="glyphicon form-control-feedback" [ngClass]="state.dirty?(showError(state)? 'glyphicon-remove' : 'glyphicon-ok') : ''"></span>
         </div>
+        <div *ngIf="showError(state)"
+             class="alert alert-danger">
+        <div *ngIf="state.errors.required">
+          State is required.
+        </div>
+        </div>
+
         <div class="text-right">
           <button class="btn btn-sm btn-info" type="button" data-toggle="tooltip" data-original-title="Edit this user"> Submit </button>
         </div>
