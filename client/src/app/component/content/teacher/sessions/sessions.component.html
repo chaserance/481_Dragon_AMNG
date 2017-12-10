@@ -1,0 +1,17 @@
+<div class="container">
+  <h3>My Sessions</h3>           
+  <table class="table table table-hover">
+    <thead>
+      <tr>
+        <th>Session ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let session of sessions" routerLink="/session/{{session.id}}">
+        <td>{{ session.id }}</td>
+        <td>{{ session.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

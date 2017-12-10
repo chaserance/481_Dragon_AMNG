@@ -38,6 +38,10 @@ import { ProfileEditComponent } from './component/content/profile/profile-edit/p
 import { AddChildComponent } from './component/content/child/add-child/add-child.component';
 import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
 import { CoursesComponent } from './component/content/courses/courses.component';
+import { SessionsComponent } from './component/content/teacher/sessions/sessions.component';
+import { StudentDetailComponent } from './component/content/teacher/student-detail/student-detail.component';
+import { SessionDetailComponent } from './component/content/teacher/session-detail/session-detail.component';
+import { SessionService } from './service/session.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { CoursesComponent } from './component/content/courses/courses.component'
     ProfileEditComponent,
     AddChildComponent,
     CourseRegistrationComponent,
-    CoursesComponent
+    CoursesComponent,
+    SessionsComponent,
+    StudentDetailComponent,
+    SessionDetailComponent,
+    TeacherComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +92,7 @@ import { CoursesComponent } from './component/content/courses/courses.component'
     CanActivateAuthGuard,
     TeacherAuthguard,
     AdminAuthguard,
+    SessionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

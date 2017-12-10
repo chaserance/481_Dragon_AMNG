@@ -17,6 +17,7 @@ import { ChildComponent } from './component/content/child/child.component';
 import { AddChildComponent } from './component/content/child/add-child/add-child.component';
 import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
 import { CoursesComponent } from './component/content/courses/courses.component';
+import { SessionDetailComponent } from './component/content/teacher/session-detail/session-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, data: { state: 'about'} },
   { path: 'login', component: LoginComponent, canActivate: [LoginActiveAuthGuard] },
   // { path: 'profile', component: ProfileComponent, canActivate: [CanActivateAuthGuard] },
-  { path: 'teacher', component: TeacherComponent, canActivate: [TeacherAuthguard] },
+  // { path: 'teacher', component: TeacherComponent, canActivate: [TeacherAuthguard] },
+  { path: 'teacher', component: TeacherComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthguard] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
@@ -32,7 +34,8 @@ const routes: Routes = [
   { path: 'profile/edit', component: ProfileEditComponent },
   { path: 'child/add', component: AddChildComponent },
   { path: 'course/registration', component: CourseRegistrationComponent },
-  { path: 'courses', component: CoursesComponent }
+  { path: 'courses', component: CoursesComponent },
+  { path: 'session/:id', component: SessionDetailComponent }
 ];
 
 @NgModule({
