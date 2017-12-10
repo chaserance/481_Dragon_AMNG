@@ -1,7 +1,93 @@
-.ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+.error-message {
+  color: red;
+  text-align: left;
 }
 
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+.closebtn {
+  margin: 0 auto;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+.form-hint {
+  font-size: 7pt;
+  line-height: 9pt;
+  margin: -5px auto 5px;
+  color: #999;
+}
+
+.strength-meter {
+  position: relative;
+  height: 3px;
+  background: #DDD;
+  margin: 10px auto 20px;
+  border-radius: 3px;
+}
+
+$strength-meter-width:140px;
+$strength-meter-align:$strength-meter-width;
+
+.strength-meter:before,
+.strength-meter:after {
+  content: '';
+  height: inherit;
+  background: transparent;
+  display: block;
+  border-color: #FFF;
+  border-style: solid;
+  border-width: 0 5px 0 5px;
+  position: absolute;
+  width: $strength-meter-width;
+  z-index: 10;
+}
+
+.strength-meter:before {
+  left: $strength-meter-align;
+}
+
+.strength-meter:after {
+  right: $strength-meter-align;
+}
+
+.strength-meter-fill {
+  background: transparent;
+  height: inherit;
+  position: absolute;
+  width: 0;
+  border-radius: inherit;
+  transition: width 0.5s ease-in-out, background 0.25s;
+}
+
+.strength-meter-fill-4 {
+  background: darkred;
+  width: 20%;
+}
+
+.strength-meter-fill-3 {
+  background: orangered;
+  width: 40%;
+}
+
+.strength-meter-fill-2 {
+  background: orange;
+  width: 60%;
+}
+
+.strength-meter-fill-1 {
+  background: yellowgreen;
+  width: 80%;
+}
+
+.strength-meter-fill-0 {
+  background: green;
+  width: 100%;
 }
