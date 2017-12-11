@@ -62,4 +62,3 @@ export class LoginComponent implements OnInit {
     return formControl.invalid && (formControl.dirty || formControl.touched);
   }
 }
-
