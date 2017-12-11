@@ -36,7 +36,6 @@ import {PrivilegeService} from './service/privilege.service';
 import {ProgramService} from './service/program.service';
 import {PromotionService} from './service/promotion.service';
 import {RoleService} from './service/role.service';
-import {SessionService} from './service/session.service';
 import {ValidatorsService} from './service/validators.service';
 import {LoginActiveAuthGuard} from './service/login-active.authguard';
 import {CanActivateAuthGuard} from './service/can-active.authguard';
