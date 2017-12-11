@@ -19,6 +19,7 @@ spring:
   # = DATA SOURCE
   # ===============================
   datasource:
+
     driver-class-name: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://whiletruedb.cbyi87n6etmg.us-east-2.rds.amazonaws.com/prototype?characterEncoding=utf8
 #    username: whiletrue

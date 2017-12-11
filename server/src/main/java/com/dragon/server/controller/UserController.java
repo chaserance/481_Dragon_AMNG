@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -33,16 +35,11 @@ public class UserController {
 
 
     @RequestMapping(value = "/users/me", method = RequestMethod.GET)
-    public ResponseEntity me(Authentication authentication) {
+    public void me(Authentication authentication, HttpServletResponse response) throws IOException {
         User me = userRepository.findByUsername(authentication.getName()).get();
-
-        Resource<User> resource = new Resource<>(me);
-
-        resource.add(linkTo(methodOn(UserController.class).me(authentication)).withSelfRel());
-
-        resource.add(linkTo(methodOn(UserController.class).usersSessions(me.getId())).withRel("sessions"));
-
-        return ResponseEntity.ok(resource);
+        Long id = me.getId();
+        String userUri = "/api/users/" + id;
+        response.sendRedirect(userUri);
     }
 
     @RequestMapping(value = "/users/{id}/sessions", method = RequestMethod.POST)

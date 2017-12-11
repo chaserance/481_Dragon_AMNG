@@ -16,9 +16,9 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
@@ -41,13 +41,15 @@ public class ChildToSessionController {
         this.repositoryEntityLinks = repositoryEntityLinks;
     }
 
-
+    @PreAuthorize("@SecurityServiceImpl.canCreateNewPerformance(#childId, principal.username) or hasAuthority('CAN_WRITE_PERFORMANCE')")
     @RequestMapping(method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createPerformance(@PathVariable(value = "childId") Long childId, @RequestBody @Valid PerformanceDto dto) {
+    public ResponseEntity createPerformance(@PathVariable(value = "childId") Long childId, @RequestBody PerformanceDto dto) {
         Child child = verifyChild(childId);
-        educationalPerformanceRepository.save(new EducationalPerformance(new EducationalPerformancePk(child.getId(), dto.getSessionId()),
+        EducationalPerformance performance = educationalPerformanceRepository.save(new EducationalPerformance(new EducationalPerformancePk(child.getId(), dto.getSessionId()),
                 dto.getFeedBack(), dto.getGrade()));
+        Resource<EducationalPerformance> resource = new Resource<>(performance);
+        resource.add(linkTo(methodOn(ChildToSessionController.class).getOne(child.getId(), dto.getSessionId())).withSelfRel());
+        return new ResponseEntity(resource, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -89,13 +91,17 @@ public class ChildToSessionController {
     }
 
     /**
-     * Convert the EducationalPerformance entity to a PerformanceDto
+     * Delete a EducationalPerformance of a Child in a session
      *
-     * @param performance
-     * @return PerformanceDto
+     * @param childId
+     * @param sessionId
      */
-    private PerformanceDto toDto(EducationalPerformance performance) {
-        return new PerformanceDto(performance.getFeedBack(), performance.getGrade(), performance.getPk().getSessionId());
+    @PreAuthorize("@SecurityServiceImpl.canCreateNewPerformance(#childId, principal.username) or hasAuthority('CAN_WRITE_PERFORMANCE')")
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{sessionId}")
+    public ResponseEntity deleteOne(@PathVariable(value = "childId") Long childId, @PathVariable(value = "sessionId") Long sessionId) {
+        EducationalPerformance performance = verifyPerformance(childId, sessionId);
+        educationalPerformanceRepository.delete(performance);
+        return ResponseEntity.noContent().build();
     }
 
     /**

@@ -3,8 +3,10 @@ package com.dragon.server.repository;
 import com.dragon.server.entity.Course;
 import com.dragon.server.entity.Program;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+@RepositoryRestResource(collectionResourceRel="result_array")
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Override

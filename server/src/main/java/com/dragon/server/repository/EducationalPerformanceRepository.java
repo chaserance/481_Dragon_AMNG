@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(exported = false)
+@RepositoryRestResource(exported = false, collectionResourceRel="result_array")
 public interface EducationalPerformanceRepository extends JpaRepository<EducationalPerformance, EducationalPerformancePk> {
 
     List<EducationalPerformance> findByPkChildId(Long childId);

@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import { RequestExceptionHandler } from '../../../error/request-exception-handler';
 
 import { State } from '../../../model/state';
-import {LoginRequest} from '../../../model/login-request';
+import {RegisterRequest} from '../../../model/register-request';
 import {ValidatorsService} from '../../../service/validators.service';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.register(this.form.value as LoginRequest).subscribe(
+    this.auth.register(this.form.value as RegisterRequest).subscribe(
       (response: Response) => {
         if (response.status === 201) {
           this.router.navigate(['/login']);
