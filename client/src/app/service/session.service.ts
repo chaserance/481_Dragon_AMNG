@@ -5,6 +5,7 @@ import {Pageable} from '../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../model/pageable-results';
 import {Session} from '../model/session';
+import {User} from '../model/user';
 
 @Injectable()
 export class SessionService {
@@ -16,8 +17,13 @@ export class SessionService {
 
   /** GET ALL **/
   getSessions(pageable?: Pageable): Observable<PageableResults<Session>> {
-    console.log(this.sessionsUrl + pageable);
     return this.http.get<PageableResults<Session>>(this.sessionsUrl + (pageable ? pageable : ''))
+      .pipe();
+  }
+
+  /** GET BY USER **/
+  getSessionsByUser(user: User, pageable?: Pageable): Observable<PageableResults<Session>> {
+    return this.http.get<PageableResults<Session>>(user._links.sessions.href)
       .pipe();
   }
 

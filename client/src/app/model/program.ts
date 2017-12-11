@@ -1,7 +1,7 @@
 import {HateoasResult} from './hateoas-result';
 import {Course} from './course';
 
-export interface Program extends HateoasResult {
+export class Program extends HateoasResult {
   programName: string;
   programDescription: string;
   enabled: boolean;

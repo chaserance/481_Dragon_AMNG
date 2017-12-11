@@ -5,6 +5,7 @@ import {Pageable} from '../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../model/pageable-results';
 import {Privilege} from '../model/privilege';
+import {Role} from '../model/role';
 
 @Injectable()
 export class PrivilegeService {
@@ -18,6 +19,12 @@ export class PrivilegeService {
   getPrivileges(pageable?: Pageable): Observable<PageableResults<Privilege>> {
     console.log(this.privilegesUrl + pageable);
     return this.http.get<PageableResults<Privilege>>(this.privilegesUrl + (pageable ? pageable : ''))
+      .pipe();
+  }
+
+  /** GET ALL BY ROLE **/
+  getPrivilegeByRole(role: Role): Observable<PageableResults<Privilege>> {
+    return this.http.get<PageableResults<Privilege>>(role._links.privileges.href)
       .pipe();
   }
 

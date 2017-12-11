@@ -1,6 +1,6 @@
 import {HateoasResult} from './hateoas-result';
 
-export interface PageableResults<T> extends HateoasResult {
+export class PageableResults<T> extends HateoasResult {
   _embedded: {
     result_array: T[]
   };

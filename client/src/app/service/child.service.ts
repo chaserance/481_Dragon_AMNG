@@ -5,6 +5,7 @@ import {Pageable} from '../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../model/pageable-results';
 import {Child} from '../model/child';
+import {User} from '../model/user';
 
 @Injectable()
 export class ChildService {
@@ -18,6 +19,12 @@ export class ChildService {
   getChildren(pageable?: Pageable): Observable<PageableResults<Child>> {
     console.log(this.childrenUrl + pageable);
     return this.http.get<PageableResults<Child>>(this.childrenUrl + (pageable ? pageable : ''))
+      .pipe();
+  }
+
+  /** GET ALL BY USER **/
+  getChildrenByUser(user: User): Observable<PageableResults<Child>> {
+    return this.http.get<PageableResults<Child>>(user._links.children.href)
       .pipe();
   }
 

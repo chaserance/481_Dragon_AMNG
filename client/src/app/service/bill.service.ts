@@ -23,12 +23,10 @@ export class BillService {
       );
   }
 
-  /** GET ALL BY USER **/
-  getBillByUser(bill: Bill): Observable<PageableResults<Bill>> {
-    return this.http.get<PageableResults<Bill>>(bill._links.user.href)
-      .pipe(
-        tap(b => console.log(b))
-      );
+  /** GET BY USER **/
+  getBillByUser(user: User): Observable<PageableResults<Bill>> {
+    return this.http.get<PageableResults<Bill>>(user._links.bill.href)
+      .pipe();
   }
 
   /** POST **/

@@ -4,7 +4,7 @@ import {Schedule} from './schedule';
 import {User} from './user';
 import {Course} from './course';
 
-export interface Session extends HateoasResult {
+export class Session extends HateoasResult {
   sessionName: string;
   sessionDescription: string;
   period: DatePeriod;

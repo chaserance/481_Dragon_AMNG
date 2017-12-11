@@ -5,6 +5,7 @@ import {Pageable} from '../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../model/pageable-results';
 import {Promotion} from '../model/promotion';
+import {Bill} from '../model/bill';
 
 @Injectable()
 export class PromotionService {
@@ -18,6 +19,12 @@ export class PromotionService {
   getPromotions(pageable?: Pageable): Observable<PageableResults<Promotion>> {
     console.log(this.promotionsUrl + pageable);
     return this.http.get<PageableResults<Promotion>>(this.promotionsUrl + (pageable ? pageable : ''))
+      .pipe();
+  }
+
+  /** GET BY BILL **/
+  getPromotionByBill(bill: Bill): Observable<PageableResults<Promotion>> {
+    return this.http.get<PageableResults<Promotion>>(bill._links.promotion.href)
       .pipe();
   }
 

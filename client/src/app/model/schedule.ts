@@ -1,4 +1,4 @@
-export interface Schedule {
+export class Schedule {
   days: string;
   startTime: string;
   endTime: string;

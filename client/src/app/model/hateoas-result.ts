@@ -1,4 +1,4 @@
-export interface HateoasResult {
+export class HateoasResult {
   _links: {
     self: {
       href: string

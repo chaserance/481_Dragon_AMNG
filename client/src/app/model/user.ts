@@ -1,7 +1,7 @@
 import {Address} from './address';
 import {HateoasResult} from './hateoas-result';
 
-export interface User extends HateoasResult {
+export class User extends HateoasResult {
   username: string;
   password: string;
   firstname: string;

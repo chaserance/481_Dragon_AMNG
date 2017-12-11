@@ -15,6 +15,7 @@ import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
@@ -77,13 +78,19 @@ public class SessionToChildController {
     }
 
     /**
-     * Convert the EducationalPerformance entity to a PerformanceDto
+     * Update a EducationalPerformance of a Session in a Child
      *
-     * @param performance
-     * @return PerformanceDto
+     * @param childId
+     * @param sessionId
      */
-    private PerformanceDto toDto(EducationalPerformance performance) {
-        return new PerformanceDto(performance.getFeedBack(), performance.getGrade(), performance.getPk().getChildId());
+    @PreAuthorize("@SecurityServiceImpl.canUpdateCurrentPerformance(#childId, #sessionId, principal.username) or hasAuthority('CAN_WRITE_PERFORMANCE')")
+    @RequestMapping(method = RequestMethod.PUT, path = "/{childId}")
+    public ResponseEntity updatePerformance(@PathVariable(value = "childId") Long childId, @PathVariable(value = "sessionId") Long sessionId, PerformanceDto dto) {
+        EducationalPerformance performance = verifyPerformance(childId, sessionId);
+        performance.setFeedBack(dto.getFeedBack());
+        performance.setGrade(dto.getGrade());
+        educationalPerformanceRepository.save(performance);
+        return ResponseEntity.noContent().build();
     }
 
     /**

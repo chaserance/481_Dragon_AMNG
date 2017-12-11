@@ -1,6 +1,8 @@
 import {HateoasResult} from './hateoas-result';
 
-export interface Performance extends HateoasResult {
+export class Performance extends HateoasResult {
   feedBack: string;
   grade: string;
+  sessionUri: string;
+  childUri: string;
 }

@@ -1,25 +1,16 @@
 package com.dragon.server.model;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 public class PerformanceDto {
 
-    @Size(max = 511)
     private String feedBack;
 
     private String grade;
 
-    @NotNull
-    private Long sessionId;
+    private String sessionUri;
+
+    private String childUri;
 
     public PerformanceDto() {
-    }
-
-    public PerformanceDto(String feedBack, String grade, Long sessionId) {
-        this.feedBack = feedBack;
-        this.grade = grade;
-        this.sessionId = sessionId;
     }
 
     public String getFeedBack() {
@@ -38,11 +29,27 @@ public class PerformanceDto {
         this.grade = grade;
     }
 
-    public Long getSessionId() {
-        return sessionId;
+    public String getSessionUri() {
+        return sessionUri;
     }
 
-    public void setSessionId(Long sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionUri(String sessionUri) {
+        this.sessionUri = sessionUri;
+    }
+
+    public String getChildUri() {
+        return childUri;
+    }
+
+    public void setChildUri(String childUri) {
+        this.childUri = childUri;
+    }
+
+    public Long getSessionId() {
+        return Long.valueOf(sessionUri.substring(sessionUri.length() - 1));
+    }
+
+    public Long getChildId() {
+        return Long.valueOf(childUri.substring(childUri.length() - 1));
     }
 }
