@@ -4,13 +4,17 @@
     <thead>
       <tr>
         <th>Session ID</th>
-        <th>Name</th>
+        <th>Course Name</th>
+        <th>Time</th>
+        <th>Days</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let session of sessions" routerLink="/session/{{session.id}}">
         <td>{{ session.id }}</td>
         <td>{{ session.name }}</td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

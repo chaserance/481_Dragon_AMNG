@@ -8,13 +8,17 @@
     <thead>
       <tr>
         <th>Student ID</th>
-        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Parent's User ID</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let student of session.students" (click)="onSelectStudent(student)">
         <td>{{ student.id }}</td>
         <td>{{ student.name }}</td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
