@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { homeTransition } from '../../../animation/home.animation';
+import {ProgramService} from '../../../shared/services/program.service';
+import {Program} from '../../../model/program';
+import {Promotion} from '../../../model/promotion';
+import {Pageable} from '../../../model/pageable';
+import {PromotionService} from '../../../shared/services/promotion.service';
 
 @Component({
   selector: 'app-home',
@@ -11,53 +16,35 @@ import { homeTransition } from '../../../animation/home.animation';
   }
 })
 export class HomeComponent implements OnInit {
-  courses: any[] = COURSES;
-  promotions: any[] = PROMOTIONS;
+  programs: Program[];
+  promotions: Promotion[];
   events: any[] = EVENTS;
+  private n = 4;
 
-  constructor() { }
+  constructor(private programService: ProgramService,
+              private promotionService: PromotionService) { }
 
   ngOnInit() {
+    this.getFirstNPrograms();
+    this.getFirstNPromotions();
+  }
+
+  getFirstNPrograms() {
+    const pageable = new Pageable();
+    pageable.size = this.n;
+    this.programService.getPrograms(pageable)
+      .subscribe(p => this.programs = p._embedded.result_array);
+  }
+
+  getFirstNPromotions() {
+    const pageable = new Pageable();
+    pageable.size = this.n;
+    this.promotionService.getPromotions(pageable)
+      .subscribe(p => this.promotions = p._embedded.result_array);
   }
 
 }
 
-const COURSES = [
-  {
-    name: 'Course A',
-    description: 'Some description about course A.'
-  },
-  {
-    name: 'Course B',
-    description: 'Some description about course B.'
-  },
-  {
-    name: 'Course C',
-    description: 'Some description about course C.'
-  },
-  {
-    name: 'Course D',
-    description: 'Some description about course D.'
-  },
-  {
-    name: 'Course E',
-    description: 'Some description about course E.'
-  }
-];
-const PROMOTIONS = [
-  {
-    name: 'Multiple enrollment promotions',
-    description: 'Some description about Multiple enrollment promotions.'
-  },
-  {
-    name: 'Seasonal promotions',
-    description: 'Some description about Seasonal promotions.'
-  },
-  {
-    name: 'Multi programs promotions',
-    description: 'Some description about Multi programs promotions.'
-  }
-];
 const EVENTS = [
   {
     name: 'Event A',

@@ -1,0 +1,163 @@
+:host{
+  text-align:left;
+  position:relative;
+  width: 28px;
+  height:50px;
+  display:inline-block;
+  margin:0 4px;
+}
+
+
+/* 1 */
+
+:host.digit1 .d5,
+:host.digit1 .d7{
+  opacity:1;
+}
+
+/* 2 */
+
+:host.digit2 .d1,
+:host.digit2 .d5,
+:host.digit2 .d2,
+:host.digit2 .d6,
+:host.digit2 .d3{
+  opacity:1;
+}
+
+/* 3 */
+
+:host.digit3 .d1,
+:host.digit3 .d5,
+:host.digit3 .d2,
+:host.digit3 .d7,
+:host.digit3 .d3{
+  opacity:1;
+}
+
+/* 4 */
+
+:host.digit4 .d5,
+:host.digit4 .d2,
+:host.digit4 .d4,
+:host.digit4 .d7{
+  opacity:1;
+}
+
+/* 5 */
+
+:host.digit5 .d1,
+:host.digit5 .d2,
+:host.digit5 .d4,
+:host.digit5 .d3,
+:host.digit5 .d7{
+  opacity:1;
+}
+
+/* 6 */
+
+:host.digit6 .d1,
+:host.digit6 .d2,
+:host.digit6 .d4,
+:host.digit6 .d3,
+:host.digit6 .d6,
+:host.digit6 .d7{
+  opacity:1;
+}
+
+
+/* 7 */
+
+:host.digit7 .d1,
+:host.digit7 .d5,
+:host.digit7 .d7{
+  opacity:1;
+}
+
+/* 8 */
+
+:host.digit8 .d1,
+:host.digit8 .d2,
+:host.digit8 .d3,
+:host.digit8 .d4,
+:host.digit8 .d5,
+:host.digit8 .d6,
+:host.digit8 .d7{
+  opacity:1;
+}
+
+/* 9 */
+
+:host.digit9 .d1,
+:host.digit9 .d2,
+:host.digit9 .d3,
+:host.digit9 .d4,
+:host.digit9 .d5,
+:host.digit9 .d7{
+  opacity:1;
+}
+
+/* 0 */
+
+:host.digit0 .d1,
+:host.digit0 .d3,
+:host.digit0 .d4,
+:host.digit0 .d5,
+:host.digit0 .d6,
+:host.digit0 .d7{
+  opacity:1;
+}
+
+
+
+
+span{
+  background-color:#272e38;
+  border-color:#272e38;
+  opacity:0;
+  position:absolute;
+  -webkit-transition:0.25s;
+  -moz-transition:0.25s;
+  transition:0.25s;
+}
+
+span:before,
+span:after{
+  content:'';
+  position:absolute;
+  width:0;
+  height:0;
+  border:5px solid transparent;
+}
+
+
+
+span.d1{			height:5px;width:16px;top:0;left:6px;}
+span.d1:before{	border-width:0 5px 5px 0;border-right-color:inherit;left:-5px;}
+span.d1:after{	border-width:0 0 5px 5px;border-left-color:inherit;right:-5px;}
+
+span.d2{			height:5px;width:16px;top:24px;left:6px;}
+span.d2:before{	border-width:3px 4px 2px;border-right-color:inherit;left:-8px;}
+span.d2:after{	border-width:3px 4px 2px;border-left-color:inherit;right:-8px;}
+
+span.d3{			height:5px;width:16px;top:48px;left:6px;}
+span.d3:before{	border-width:5px 5px 0 0;border-right-color:inherit;left:-5px;}
+span.d3:after{	border-width:5px 0 0 5px;border-left-color:inherit;right:-5px;}
+
+span.d4{			width:5px;height:14px;top:7px;left:0;}
+span.d4:before{	border-width:0 5px 5px 0;border-bottom-color:inherit;top:-5px;}
+span.d4:after{	border-width:0 0 5px 5px;border-left-color:inherit;bottom:-5px;}
+
+span.d5{			width:5px;height:14px;top:7px;right:0;}
+span.d5:before{	border-width:0 0 5px 5px;border-bottom-color:inherit;top:-5px;}
+span.d5:after{	border-width:5px 0 0 5px;border-top-color:inherit;bottom:-5px;}
+
+span.d6{			width:5px;height:14px;top:32px;left:0;}
+span.d6:before{	border-width:0 5px 5px 0;border-bottom-color:inherit;top:-5px;}
+span.d6:after{	border-width:0 0 5px 5px;border-left-color:inherit;bottom:-5px;}
+
+span.d7{			width:5px;height:14px;top:32px;right:0;}
+span.d7:before{	border-width:0 0 5px 5px;border-bottom-color:inherit;top:-5px;}
+span.d7:after{	border-width:5px 0 0 5px;border-top-color:inherit;bottom:-5px;}
+
+

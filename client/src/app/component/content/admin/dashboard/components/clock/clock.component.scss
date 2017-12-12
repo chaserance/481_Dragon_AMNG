@@ -1,0 +1,17 @@
+div{
+  text-align:left;
+  position:relative;
+  width: 28px;
+  height:50px;
+  display:inline-block;
+  margin:0 4px;
+}
+
+span{
+  opacity:0;
+  position:absolute;
+
+  -webkit-transition:0.25s;
+  -moz-transition:0.25s;
+  transition:0.25s;
+}

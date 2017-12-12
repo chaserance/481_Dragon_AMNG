@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import { routerTransition } from './animation/router.animation';
 
 @Component({
@@ -7,7 +7,12 @@ import { routerTransition } from './animation/router.animation';
   styleUrls: ['./app.component.scss'],
   animations: [ routerTransition ]
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
+  ngAfterViewInit(): void {
+    document.getElementById('global-spinner').style.display = 'none';
+  }
+
   getState(outlet) {
     return outlet.activatedRouteData.state;
   }

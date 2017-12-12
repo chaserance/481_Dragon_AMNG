@@ -1,0 +1,263 @@
+.canvas {
+  text-align: center;
+  color: white;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-family: 'Orbitron', cursive;
+  text-align: center;
+}
+
+h1:hover {
+  color: orange;
+  -webkit-transition: color .5s ease-in;
+  transition: color .5s ease-in;
+}
+
+h2 {
+  font-family: 'Sniglet', sans-serif;
+  color: white;
+  margin: 0.5em 0.5em 1.5em 0.5em;
+  padding: 0.5em;
+  background: black;
+  position: relative;
+}
+
+
+a {
+  color:#FFF;
+  position: relative;
+  text-decoration:none;
+}      /* unvisited link */
+a:visited {color:#FFF;}  /* visited link */
+a:hover {color:#FFF;}  /* mouse over link */
+a:active {color:#FFF;}  /* selected link */
+
+.statement {
+  font-size:30px;
+}
+
+#infinity {
+  margin: 0 auto;
+  position: relative;
+  width: 212px;
+  height: 100px;
+  z-index: 5;
+
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  -webkit-animation: infiniteBall 5s linear infinite;
+  animation: infiniteBall 5s linear infinite;
+}
+
+$diameter: 100px;
+
+#infinity:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $diameter;
+  height: $diameter;
+  border: 20px solid #4D30E0;
+  -moz-border-radius: 50px 50px 25px 50px;
+  border-radius: 50px 50px 25px 50px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#infinity:after {
+  z-index: -5;
+  content: "";
+  position: absolute;
+  left: auto;
+  right: 0;
+  width: $diameter;
+  height: $diameter;
+  border: 20px solid white;
+  -moz-border-radius: 50px 50px 50px 0;
+  border-radius: 50px 50px 50px 0;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+@keyframes infiniteBall {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@-webkit-keyframes infiniteBall {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+.moveball {
+  width: 15px;
+  height: 15px;
+  background-color:white;
+  border-radius: 40px;
+  position: absolute;
+  top: 48%;
+  left:1%;
+}
+
+#ball {
+  animation: infiniteSign 5s linear infinite;
+  -webkit-animation: infiniteSign 5s linear infinite; /* Safari and Chrome */
+}
+
+#ball2 {
+  animation: infiniteSign 5s linear 1s infinite;
+  -webkit-animation: infiniteSign 5s linear 1s infinite; /* Safari and Chrome */
+}
+
+#ball3 {
+  animation: infiniteSign 5s linear 2s infinite;
+  -webkit-animation: infiniteSign 5s linear 2s infinite; /* Safari and Chrome */
+}
+
+#ball4 {
+  animation: infiniteSign 5s linear 3s infinite;
+  -webkit-animation: infiniteSign 5s linear 3s infinite; /* Safari and Chrome */
+}
+
+#ball5 {
+  animation: infiniteSign 5s linear 4s infinite;
+  -webkit-animation: infiniteSign 5s linear 4s infinite; /* Safari and Chrome */
+}
+
+@keyframes infiniteSign {
+  6.25%  {top: 21%; left:3%; background-color:white}
+  12.5%  {top: 7%; left:11%; background-color:white}
+  18.75%  {top: 12%; left:25%; background-color:white}
+  25% {top: 48%; left:47%; background-color:white}
+
+
+  31.25%  {top: 84%;  left:71%; background-color:#4D30E0}
+  37.5% {top: 91%; left: 82%; background-color:#4D30E0}
+  43.75% {top: 73%; left: 92%; background-color:#4D30E0}
+  50% { top: 48%; left: 94%; background-color:#4D30E0}
+
+  56.25% {top: 23%; left: 92%; background-color:#4D30E0}
+  62.5% {top: 6%; left: 82%; background-color:#4D30E0}
+  68.75% {top: 12%; left: 70%; background-color:#4D30E0}
+  75% { top: 48%; left:47%; background-color:#4D30E0}
+
+  81.25% { top: 73%; left: 33%; background-color:white}
+  87.5% { top: 89%; left: 19%; background-color:white}
+  93.75% { top: 84%; left: 7%; background-color:white}
+  100% { top: 48%;  left:1%; background-color:white}
+}
+
+@-webkit-keyframes infiniteSign /* Safari and Chrome */ {
+  6.25%  {top: 21%; left:3%; background-color:white}
+  12.5%  {top: 7%; left:11%; background-color:white}
+  18.75%  {top: 12%; left:25%; background-color:white}
+  25% {top: 48%; left:47%; background-color:white}
+
+
+  31.25%  {top: 84%;  left:71%; background-color:#4D30E0}
+  37.5% {top: 91%; left: 82%; background-color:#4D30E0}
+  43.75% {top: 73%; left: 92%; background-color:#4D30E0}
+  50% { top: 47%; left: 94%; background-color:#4D30E0}
+
+  56.25% {top: 23%; left: 92%; background-color:#4D30E0}
+  62.5% {top: 6%; left: 82%; background-color:#4D30E0}
+  68.75% {top: 12%; left: 70%; background-color:#4D30E0}
+  75% { top: 48%; left:47%; background-color:#4D30E0}
+
+  81.25% { top: 73%; left: 33%; background-color:white}
+  87.5% { top: 89%; left: 19%; background-color:white}
+  93.75% { top: 84%; left: 7%; background-color:white}
+  100% { top: 48%;  left:1%; background-color:white}
+}
+
+#break:hover {
+  content:"Go back to home page";
+  -webkit-transition: color .5s ease-in;
+}
+
+#left {
+  width: 15px;
+  height: 15px;
+  margin-right: 55px;
+  content: "";
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  position: relative;
+
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+
+  animation: arrowright 1s linear infinite;
+  -webkit-animation: arrowright 1s linear infinite;
+}
+
+#right {
+  width: 15px;
+  height: 15px;
+
+  content: "";
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  position: relative;
+
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+
+  animation: arrowleft 1s linear infinite;
+  -webkit-animation: arrowleft 1s linear infinite;
+}
+
+@keyframes arrowright {
+  0%   {left:0%; top:0%}
+  100% {left:3%; top:0%}
+}
+
+@-webkit-keyframes arrowright {
+  0%   {left:0%; top:0%}
+  100% {left:3%; top:0%}
+}
+
+@keyframes arrowleft {
+  0%   {left:3%; top:0%}
+  100% {left:0%; top:0%}
+}
+
+@-webkit-keyframes arrowleft {
+  0%   {left:3%; top:0%}
+  100% {left:0%; top:0%}
+}
+
+.hp code span{
+  content: 'break'
+}
+.hp:hover code span{
+  display: none;
+}
+.hp:hover code:after{
+  color: orange;
+  content: 'Go Back to Home Page.';
+}

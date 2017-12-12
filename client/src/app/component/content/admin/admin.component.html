@@ -1,16 +1,6 @@
-<h3>Program test</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let program of programs" class="col-1-4">
-    <div class="module hero">
-      <h4>{{program.programName}}</h4>
-      <p>{{program.programDescription}}</p>
-      <hr/>
-      <a *ngFor="let course of program.courses">
-        <h4>{{course.courseName}}</h4>
-        <p>{{course.courseDescription}}</p>
-        <button (click)="updateCourse(course)">update!!</button>
-      </a>
-    </div>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-  </a>
-</div>
+<app-sidebar></app-sidebar>
+<section class="main-container">
+  <router-outlet></router-outlet>
+</section>
+
+

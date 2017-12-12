@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Session } from '../session';
-import { Student } from '../student';
 
-import { SessionService } from '../../../../service/session.service';
+
+import { SessionService } from '../../../../shared/services/session.service';
+import {Session} from '../../../../model/session';
+import {PerformanceService} from '../../../../shared/services/performance.service';
+import {UserService} from '../../../../shared/services/user.service';
 
 @Component({
   selector: 'app-sessions',
@@ -13,11 +15,19 @@ export class SessionsComponent implements OnInit {
 
   sessions: Session[];
 
-  constructor(private sessionService: SessionService) { }
+  constructor(private sessionService: SessionService,
+              private userService: UserService,
+              private performanceService: PerformanceService) { }
 
   getSessions(): void {
-    this.sessionService.getSessions()
-        .subscribe(sessions => this.sessions = sessions);
+    this.userService.getMe().subscribe(user =>
+      this.sessionService.getSessionsByUser(user)
+          .subscribe(sessions => this.sessions = sessions._embedded.result_array)
+    );
+  }
+
+  getPerformancesBySession(session: Session) {
+    return this.performanceService.getChildrenBySession(session);
   }
 
   ngOnInit() {

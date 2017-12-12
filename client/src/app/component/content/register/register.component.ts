@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import {AuthService} from '../../../service/auth.service';
+import {AuthService} from '../../../shared/services/auth.service';
 import {Response} from '@angular/http';
 import {Router} from '@angular/router';
 
@@ -8,10 +8,10 @@ import { RequestExceptionHandler } from '../../../error/request-exception-handle
 
 import { State } from '../../../model/state';
 import {RegisterRequest} from '../../../model/register-request';
-import {ValidatorsService} from '../../../service/validators.service';
+import {ValidatorsService} from '../../../shared/services/validators.service';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
-import {UserService} from '../../../service/user.service';
+import {UserService} from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-register',

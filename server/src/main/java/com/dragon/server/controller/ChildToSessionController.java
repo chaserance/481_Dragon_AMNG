@@ -9,6 +9,7 @@ import com.dragon.server.entity.Session;
 import com.dragon.server.model.PerformanceDto;
 import com.dragon.server.repository.ChildRepository;
 import com.dragon.server.repository.EducationalPerformanceRepository;
+import com.dragon.server.service.BasePathAwareLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
@@ -33,13 +34,16 @@ public class ChildToSessionController {
     private EducationalPerformanceRepository educationalPerformanceRepository;
     private ChildRepository childRepository;
     private RepositoryEntityLinks repositoryEntityLinks;
+    private BasePathAwareLinkService linkService;
 
     @Autowired
-    public ChildToSessionController(EducationalPerformanceRepository educationalPerformanceRepository, ChildRepository childRepository, RepositoryEntityLinks repositoryEntityLinks) {
+    public ChildToSessionController(EducationalPerformanceRepository educationalPerformanceRepository, ChildRepository childRepository, RepositoryEntityLinks repositoryEntityLinks, BasePathAwareLinkService linkService) {
         this.educationalPerformanceRepository = educationalPerformanceRepository;
         this.childRepository = childRepository;
         this.repositoryEntityLinks = repositoryEntityLinks;
+        this.linkService = linkService;
     }
+
 
     @PreAuthorize("@SecurityServiceImpl.canCreateNewPerformance(#childId, principal.username) or hasAuthority('CAN_WRITE_PERFORMANCE')")
     @RequestMapping(method = RequestMethod.POST)
@@ -48,7 +52,10 @@ public class ChildToSessionController {
         EducationalPerformance performance = educationalPerformanceRepository.save(new EducationalPerformance(new EducationalPerformancePk(child.getId(), dto.getSessionId()),
                 dto.getFeedBack(), dto.getGrade()));
         Resource<EducationalPerformance> resource = new Resource<>(performance);
-        resource.add(linkTo(methodOn(ChildToSessionController.class).getOne(child.getId(), dto.getSessionId())).withSelfRel());
+        resource.add(
+                linkService.underBasePath(
+                    linkTo(methodOn(ChildToSessionController.class).getOne(child.getId(), dto.getSessionId()))
+                ).withSelfRel());
         return new ResponseEntity(resource, HttpStatus.CREATED);
     }
 
@@ -64,12 +71,19 @@ public class ChildToSessionController {
 
         List<Resource<EducationalPerformance>> resourcesList = performanceList.stream().map(e -> {
             Resource<EducationalPerformance> resource = new Resource<>(e);
-            resource.add(linkTo(methodOn(ChildToSessionController.class).getOne(childId, e.getPk().getSessionId())).withSelfRel());
+            resource.add(
+                    linkService.underBasePath(
+                        linkTo(methodOn(ChildToSessionController.class).getOne(childId, e.getPk().getSessionId()))
+                    ).withSelfRel());
+            resource.add(repositoryEntityLinks.linkToSingleResource(Session.class, e.getPk().getSessionId()));
             return resource;
         }).collect(Collectors.toList());
 
         Resources resources = new Resources(resourcesList);
-        resources.add(linkTo(methodOn(ChildToSessionController.class).getAllPerformancesForChild(childId)).withSelfRel());
+        resources.add(
+                linkService.underBasePath(
+                    linkTo(methodOn(ChildToSessionController.class).getAllPerformancesForChild(childId))
+                ).withSelfRel());
         resources.add(repositoryEntityLinks.linkToSingleResource(Child.class, child.getId()));
 
         return ResponseEntity.ok(resources);
@@ -85,7 +99,10 @@ public class ChildToSessionController {
     public ResponseEntity getOne(@PathVariable(value = "childId") Long childId, @PathVariable(value = "sessionId") Long sessionId) {
         EducationalPerformance performance = verifyPerformance(childId, sessionId);
         Resource<EducationalPerformance> resource = new Resource<>(performance);
-        resource.add(linkTo(methodOn(ChildToSessionController.class).getOne(childId, sessionId)).withSelfRel());
+        resource.add(
+                linkService.underBasePath(
+                    linkTo(methodOn(ChildToSessionController.class).getOne(childId, sessionId))
+                ).withSelfRel());
         resource.add(repositoryEntityLinks.linkToSingleResource(Session.class, sessionId));
         return ResponseEntity.ok(resource);
     }

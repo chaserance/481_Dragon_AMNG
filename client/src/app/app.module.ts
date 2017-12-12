@@ -15,32 +15,32 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   BsDropdownModule, CarouselModule, CollapseModule, ProgressbarModule, TabsModule,
-  TooltipModule
+  TooltipModule, AccordionModule
 } from 'ngx-bootstrap';
 import { MatchHeightDirective } from './directive/match-height.directive';
-import {TokenInterceptorService} from './service/token-interceptor.service';
+import {TokenInterceptorService} from './shared/services/token-interceptor.service';
 import { AboutComponent } from './component/content/about/about.component';
 import {HttpModule} from '@angular/http';
-import { CapitalizePipe } from './pipe/capitalize.pipe';
+import { CapitalizePipe } from './shared/guard/pipes/capitalize.pipe';
 import {CommonModule} from '@angular/common';
 import { ProfileComponent } from './component/content/profile/profile.component';
 import { TeacherComponent } from './component/content/teacher/teacher.component';
-import { AdminComponent } from './component/content/admin/admin.component';
-import {AuthService} from './service/auth.service';
-import {UserService} from './service/user.service';
-import {BillService} from './service/bill.service';
-import {ChildService} from './service/child.service';
-import {CourseService} from './service/course.service';
-import {PerformanceService} from './service/performance.service';
-import {PrivilegeService} from './service/privilege.service';
-import {ProgramService} from './service/program.service';
-import {PromotionService} from './service/promotion.service';
-import {RoleService} from './service/role.service';
-import {ValidatorsService} from './service/validators.service';
-import {LoginActiveAuthGuard} from './service/login-active.authguard';
-import {CanActivateAuthGuard} from './service/can-active.authguard';
-import {TeacherAuthguard} from './service/teacher.authguard';
-import {AdminAuthguard} from './service/admin.authguard';
+import {AuthService} from './shared/services/auth.service';
+import {UserService} from './shared/services/user.service';
+import {BillService} from './shared/services/bill.service';
+import {ChildService} from './shared/services/child.service';
+import {CourseService} from './shared/services/course.service';
+import {PerformanceService} from './shared/services/performance.service';
+import {PrivilegeService} from './shared/services/privilege.service';
+import {ProgramService} from './shared/services/program.service';
+import {PromotionService} from './shared/services/promotion.service';
+import {RoleService} from './shared/services/role.service';
+
+import {ValidatorsService} from './shared/services/validators.service';
+import {LoginActiveAuthGuard} from './shared/guard/login-active.authguard';
+import {CanActivateAuthGuard} from './shared/guard/can-active.authguard';
+import {TeacherAuthguard} from './shared/guard/teacher.authguard';
+import {AdminAuthguard} from './shared/guard/admin.authguard';
 import { ChildComponent } from './component/content/child/child.component';
 import { ProfileEditComponent } from './component/content/profile/profile-edit/profile-edit.component';
 import { AddChildComponent } from './component/content/child/add-child/add-child.component';
@@ -49,7 +49,9 @@ import { CoursesComponent } from './component/content/courses/courses.component'
 import { SessionsComponent } from './component/content/teacher/sessions/sessions.component';
 import { StudentDetailComponent } from './component/content/teacher/student-detail/student-detail.component';
 import { SessionDetailComponent } from './component/content/teacher/session-detail/session-detail.component';
-import { SessionService } from './service/session.service';
+import { SessionService } from './shared/services/session.service';
+import {JwtInterceptorService} from './shared/services/jwt-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +67,6 @@ import { SessionService } from './service/session.service';
     CapitalizePipe,
     ProfileComponent,
     TeacherComponent,
-    AdminComponent,
     ChildComponent,
     ProfileEditComponent,
     AddChildComponent,
@@ -90,7 +91,8 @@ import { SessionService } from './service/session.service';
     CollapseModule.forRoot(),
     CarouselModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -113,6 +115,11 @@ import { SessionService } from './service/session.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
       multi: true
     }
   ],

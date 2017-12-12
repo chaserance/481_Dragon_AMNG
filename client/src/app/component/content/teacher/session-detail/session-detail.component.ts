@@ -1,11 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Session } from '../session';
-import { Student } from '../student';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { SessionService } from '../../../../service/session.service';
+import { SessionService } from '../../../../shared/services/session.service';
+import {Session} from '../../../../model/session';
+import {Performance} from '../../../../model/performance';
+import {PerformanceService} from '../../../../shared/services/performance.service';
+import {ChildService} from '../../../../shared/services/child.service';
+import {Observable} from 'rxjs/Observable';
+import {PageableResults} from '../../../../model/pageable-results';
 
 @Component({
   selector: 'app-session-detail',
@@ -15,29 +19,37 @@ import { SessionService } from '../../../../service/session.service';
 export class SessionDetailComponent implements OnInit {
 
   @Input() session: Session;
-  selectedStudent: Student;
-
-  onSelectStudent(student: Student): void {
-    this.selectedStudent = student;
-  }
+  @Input() performancesObs: Observable<PageableResults<Performance>>;
+  performances: Performance[];
 
   constructor(
     private route: ActivatedRoute,
     private sessionService: SessionService,
-    private location: Location
+    private location: Location,
+    private childService: ChildService,
+    private performanceService: PerformanceService
   ) { }
 
   ngOnInit(): void {
-    this.getSession();
+    this.getPerformances();
   }
 
-  getSession(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.sessionService.getSession(id)
-      .subscribe(session => this.session = session);
+  getPerformances() {
+    this.performances = null;
+    this.performancesObs.subscribe(result => {
+      this.performances = result._embedded.result_array;
+      this.performances.forEach(p =>
+        this.getChildByPerformance(p).subscribe(c => p.child = c)
+      );
+    });
   }
 
-  goBack(): void {
-    this.location.back();
+  getChildByPerformance(performance: Performance) {
+    return this.childService.getChildByPerformance(performance);
+  }
+
+  onSave(performance: Performance): void {
+    this.performanceService.updatePerformance(performance)
+      .subscribe(_ => this.getPerformances());
   }
 }

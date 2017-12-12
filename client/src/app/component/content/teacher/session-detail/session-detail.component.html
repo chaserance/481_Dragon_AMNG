@@ -1,23 +1,37 @@
-<div class="container">
-  <button class="btn btn-primary" routerLink="/teacher">Back to My Sessions</button>
-</div>
+<!--<div class="container">-->
+  <!--<button class="btn btn-primary" routerLink="/teacher">Back to My Sessions</button>-->
+<!--</div>-->
 
 <div *ngIf="session" class="container">
-  <h3>Students in {{session.name}} (ID:{{session.id}})</h3>           
+  <h3>Students List</h3>
   <table class="table table table-hover">
     <thead>
       <tr>
-        <th>Student ID</th>
-        <th>Name</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Feedback</th>
+        <th>Grade</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of session.students" (click)="onSelectStudent(student)">
-        <td>{{ student.id }}</td>
-        <td>{{ student.name }}</td>
+      <tr *ngFor="let performance of performances">
+        <td>{{performance.child?.firstname}}</td>
+        <td>{{performance.child?.lastname}}</td>
+        <td><input [(ngModel)]="performance.feedBack"/></td>
+        <td>
+          <select [(ngModel)]="performance.grade" class="form-control">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+            <option>E</option>
+            <option>F</option>
+          </select>
+        </td>
+        <td><button class="btn btn-primary" (click)="onSave(performance)">Save</button></td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<app-student-detail [student]="selectedStudent" [session]="session"></app-student-detail>
+

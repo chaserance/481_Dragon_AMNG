@@ -1,12 +1,12 @@
 <div *ngIf="student" class="container">
-  <h3>{{student.name}} (ID:{{student.id}}) in {{session.name}} (ID:{{session.id}})</h3>
+  <h3>{{student.lastname}}, {{student.firstname}} in {{session.sessionName}}</h3>
   <div class="form-group">
-    <label for="feedback">Feedback:</label>  
-    <textarea [(ngModel)]="student.feedback" placeholder="feedback" class="form-control" rows="5" id="feedback"></textarea>
+    <label for="feedback">Feedback:</label>
+    <textarea [(ngModel)]="performance.feedBack" placeholder="feedback" class="form-control" rows="5" id="feedback"></textarea>
   </div>
   <div class="form-group">
     <label for="grade">Grade:</label>
-    <select [(ngModel)]="student.grade" class="form-control" id="grade">
+    <select [(ngModel)]="performance.grade" class="form-control" id="grade">
       <option>A</option>
       <option>B</option>
       <option>C</option>
@@ -14,5 +14,6 @@
       <option>E</option>
       <option>F</option>
     </select>
+    <button (click)="onSave()">Save</button>
   </div>
 </div>
