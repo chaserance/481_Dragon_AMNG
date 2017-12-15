@@ -1,9 +1,25 @@
+<!--<div class="container">-->
+  <!--<h3>My Sessions</h3>-->
+    <!--<accordion *ngFor="let session of sessions">-->
+      <!--<accordion-group class="container" [heading]="session.sessionName">-->
+        <!--<app-session-detail [performancesObs]="getPerformancesBySession(session)"-->
+                            <!--[session]="session"></app-session-detail>-->
+      <!--</accordion-group>-->
+    <!--</accordion>-->
+<!--</div>-->
+
 <div class="container">
   <h3>My Sessions</h3>
-    <accordion *ngFor="let session of sessions">
-      <accordion-group [heading]="session.sessionName">
-        <app-session-detail [performancesObs]="getPerformancesBySession(session)"
-                            [session]="session"></app-session-detail>
-      </accordion-group>
-    </accordion>
+  <table class="table table table-hover">
+    <thead>
+    <tr>
+      <th>Session Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let session of sessions" routerLink="/teacher/sessionDetail/{{ session | toHash }}">
+      <td>{{ session.sessionName }}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ProgramRoutingModule, routedComponents} from './program-routing.module';
 import {PageHeaderModule} from '../../../../shared/modules/page-header/page-header.module';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
+import {ConfirmModalModule} from '../../../../shared/modules/confirm-modal/confirm-modal.module';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
     ProgramRoutingModule,
     Ng2SmartTableModule,
     PageHeaderModule,
+    ConfirmModalModule
   ],
   declarations: [
     ...routedComponents,

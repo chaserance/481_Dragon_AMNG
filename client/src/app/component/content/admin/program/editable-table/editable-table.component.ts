@@ -1,15 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {ProgramService} from '../../../../../shared/services/program.service';
-import {LocalDataSource, ServerDataSource} from 'ng2-smart-table';
+import {LocalDataSource} from 'ng2-smart-table';
 
 @Component({
   selector: 'app-editable-table',
   templateUrl: './editable-table.component.html',
-  styles: [`
-    nb-card {
-      transform: translate3d(0, 0, 0);
-    }
-  `],
 })
 export class EditableTableComponent {
 
@@ -46,7 +41,13 @@ export class EditableTableComponent {
     },
   };
 
-  source: LocalDataSource = new LocalDataSource()
+  source: LocalDataSource = new LocalDataSource();
+
+  @ViewChild('md')
+  modal: any;
+
+  modalMessage = '';
+  isConfirm = false;
 
   constructor(private programService: ProgramService) {
     this.getAllPrograms();
@@ -61,10 +62,12 @@ export class EditableTableComponent {
 
   onDeleteConfirm(event): void {
     if (window.confirm('Are you sure you want to delete?')) {
+      console.log('delete - if');
       event.confirm.resolve();
       this.programService.deleteProgram(event.data)
         .subscribe(_ => this.getAllPrograms());
     } else {
+      console.log('delete - else');
       event.confirm.reject();
     }
   }
@@ -92,5 +95,10 @@ export class EditableTableComponent {
     } else {
       event.confirm.reject();
     }
+  }
+
+  private openModal(message: string, resolver): void {
+    this.modalMessage = message;
+    this.modal.openModal(resolver);
   }
 }

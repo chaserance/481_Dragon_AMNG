@@ -36,6 +36,7 @@ export class PerformanceService {
 
   /** PUT By Teacher (Update child performance) **/
   updatePerformance(performance: Performance): Observable<any> {
+    this.unifyPerformance(performance);
     console.log(performance._links.self.href);
     return this.http.put<Performance>(performance._links.self.href, performance)
       .pipe();
@@ -45,5 +46,10 @@ export class PerformanceService {
   deletePerformance(performance: Performance): Observable<any> {
     return this.http.delete<Performance>(performance._links.self.href)
       .pipe();
+  }
+
+  private unifyPerformance(performance: Performance): void {
+    delete performance.child;
+    delete performance.session;
   }
 }

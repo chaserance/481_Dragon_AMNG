@@ -7,7 +7,6 @@ import { LoginComponent } from './component/content/login/login.component';
 import { LoginActiveAuthGuard } from './shared/guard/login-active.authguard';
 import { CanActivateAuthGuard } from './shared/guard/can-active.authguard';
 import { RegisterComponent } from './component/content/register/register.component';
-import {TeacherComponent} from './component/content/teacher/teacher.component';
 import {TeacherAuthguard} from './shared/guard/teacher.authguard';
 import {AdminAuthguard} from './shared/guard/admin.authguard';
 import { ProfileComponent } from './component/content/profile/profile.component';
@@ -24,7 +23,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, data: { state: 'about'} },
   { path: 'login', component: LoginComponent, canActivate: [LoginActiveAuthGuard] },
   // { path: 'profile', component: ProfileComponent, canActivate: [CanActivateAuthGuard] },
-  { path: 'teacher', component: TeacherComponent, canActivate: [TeacherAuthguard] },
+  { path: 'teacher', loadChildren: './component/content/teacher/teacher.module#TeacherModule', canActivate: [TeacherAuthguard] },
   { path: 'admin', loadChildren: './component/content/admin/admin.module#AdminModule', canActivate: [AdminAuthguard] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

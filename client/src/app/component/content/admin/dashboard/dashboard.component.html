@@ -10,20 +10,6 @@
     </div>
   </div>
   <hr>
-  <div class="row">
-    <div class="col-xl-3 col-lg-6">
-      <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-      <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-      <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-      <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
-    </div>
-  </div>
   <hr />
   <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
   <hr />

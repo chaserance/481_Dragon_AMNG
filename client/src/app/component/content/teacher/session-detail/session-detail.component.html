@@ -1,37 +1,72 @@
-<!--<div class="container">-->
-  <!--<button class="btn btn-primary" routerLink="/teacher">Back to My Sessions</button>-->
+<div class="container">
+  <button class="btn btn-primary" (click)="goBack()">Back to My Sessions</button>
+</div>
+
+<!--<div *ngIf="session">-->
+  <!--<h3>Students List</h3>-->
+  <!--<div class="table-responsive">-->
+    <!--<table class="table table-hover">-->
+      <!--<thead>-->
+        <!--<tr>-->
+          <!--<th>First name</th>-->
+          <!--<th>Last name</th>-->
+          <!--<th>Feedback</th>-->
+          <!--<th>Grade</th>-->
+        <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+        <!--<tr *ngFor="let performance of performances">-->
+          <!--<td>{{performance.child?.firstname}}</td>-->
+          <!--<td>{{performance.child?.lastname}}</td>-->
+          <!--<td><input [(ngModel)]="performance.feedBack"/></td>-->
+          <!--<td>-->
+            <!--<select [(ngModel)]="performance.grade" class="form-control">-->
+              <!--<option>A</option>-->
+              <!--<option>B</option>-->
+              <!--<option>C</option>-->
+              <!--<option>D</option>-->
+              <!--<option>E</option>-->
+              <!--<option>F</option>-->
+            <!--</select>-->
+          <!--</td>-->
+          <!--<td><button class="btn btn-primary" (click)="onSave(performance)">Save</button></td>-->
+        <!--</tr>-->
+      <!--</tbody>-->
+    <!--</table>-->
+  <!--</div>-->
 <!--</div>-->
 
 <div *ngIf="session" class="container">
-  <h3>Students List</h3>
+  <h3>Students in {{session.name}} {{session.sessionName}}</h3>
+  <h4>{{session.sessionDescription}}</h4>
   <table class="table table table-hover">
     <thead>
-      <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Feedback</th>
-        <th>Grade</th>
-      </tr>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Feedback</th>
+      <th>Grade</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let performance of performances">
-        <td>{{performance.child?.firstname}}</td>
-        <td>{{performance.child?.lastname}}</td>
-        <td><input [(ngModel)]="performance.feedBack"/></td>
-        <td>
-          <select [(ngModel)]="performance.grade" class="form-control">
-            <option>A</option>
-            <option>B</option>
-            <option>C</option>
-            <option>D</option>
-            <option>E</option>
-            <option>F</option>
-          </select>
-        </td>
-        <td><button class="btn btn-primary" (click)="onSave(performance)">Save</button></td>
-      </tr>
+    <tr *ngFor="let performance of performances">
+      <td>{{performance.child?.firstname}}</td>
+      <td>{{performance.child?.lastname}}</td>
+      <td><input [(ngModel)]="performance.feedBack"/></td>
+      <td>
+        <select [(ngModel)]="performance.grade" class="form-control">
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+          <option>D</option>
+          <option>E</option>
+          <option>F</option>
+        </select>
+      </td>
+      <td><button class="btn btn-primary" (click)="onSave(performance)">Save</button></td>
+    </tr>
     </tbody>
   </table>
 </div>
 
-
+<!--<app-student-detail [student]="selectedStudent" [session]="session"></app-student-detail>-->

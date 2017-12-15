@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import {Pageable} from '../../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../../model/pageable-results';
 import {Session} from '../../model/session';
 import {User} from '../../model/user';
+import {EntityService} from './entity.service';
+import {map} from 'rxjs/operators';
 
 @Injectable()
-export class SessionService {
+export class SessionService extends EntityService<Session> {
   baseUrl = environment.baseUrl;
 
   private sessionsUrl = this.baseUrl + '/api/sessions/';
-
-  constructor(private http: HttpClient) {
-  }
 
   /** GET ALL **/
   getSessions(pageable?: Pageable): Observable<PageableResults<Session>> {
@@ -49,23 +47,3 @@ export class SessionService {
   }
 }
 
-
-// import { Injectable } from '@angular/core';
-// import { Session } from '../component/content/teacher/session';
-// import { SESSIONS } from '../component/content/teacher/mock-sessions';
-// import { Observable } from 'rxjs/Observable';
-// import { of } from 'rxjs/observable/of';
-//
-// @Injectable()
-// export class SessionService {
-//
-//   constructor() { }
-//
-//   getSessions(): Observable<Session[]> {
-//     return of(SESSIONS);
-//   }
-//
-//   getSession(id: number): Observable<Session> {
-//     return of(SESSIONS.find(session => session.id === id));
-//   }
-// }

@@ -38,18 +38,12 @@ export class DashboardComponent implements OnInit {
       {
         id: 1,
         type: 'success',
-        message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+        message: `New Message from Teacher_FN...`
       },
       {
         id: 2,
         type: 'warning',
-        message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
+        message: `New Message from User_Fn`
       }
     );
   }

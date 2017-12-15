@@ -28,13 +28,14 @@
     <div class="col-xs-12 col-sm-6">
       <div class="panel panel-success">
         <div class="panel-heading">
-          <h1 class="panel-title">Courses List</h1>
+          <h1 class="panel-title">Promotion We have</h1>
         </div>
         <div class="panel-body">
           <ul>
-            <li *ngFor="let course of courses">
-              <h4>{{course.name}}</h4>
-              <p>{{course.description}}</p>
+            <li *ngFor="let promotion of promotions">
+              <h4>{{promotion.name}}</h4>
+              <p>{{promotion.description}}</p>
+              <p>{{promotion.ratio}}</p>
             </li>
           </ul>
         </div>
@@ -44,13 +45,13 @@
     <div class="col-xs-12 col-sm-6">
       <div class="panel panel-success">
         <div class="panel-heading">
-          <h1 class="panel-title">Promotion We have</h1>
+          <h1 class="panel-title">Programs</h1>
         </div>
         <div class="panel-body">
           <ul>
-            <li *ngFor="let promotion of promotions">
-              <h4>{{promotion.name}}</h4>
-              <p>{{promotion.description}}</p>
+            <li *ngFor="let program of programs">
+              <h4>{{program.programName}}</h4>
+              <p>{{program.programDescription}}</p>
             </li>
           </ul>
         </div>

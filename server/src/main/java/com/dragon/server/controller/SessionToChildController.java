@@ -81,7 +81,7 @@ public class SessionToChildController {
      */
     @RequestMapping(method = RequestMethod.GET, path = "/{childId}")
     public ResponseEntity getOne(@PathVariable(value = "childId") Long childId, @PathVariable(value = "sessionId") Long sessionId) {
-        EducationalPerformance performance = verifyPerformance(childId, sessionId);
+        EducationalPerformance performance = verifyPerformance(sessionId, childId);
         Resource<EducationalPerformance> resource = new Resource<>(performance);
         resource.add(
                 linkService.underBasePath(

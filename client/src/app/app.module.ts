@@ -21,10 +21,9 @@ import { MatchHeightDirective } from './directive/match-height.directive';
 import {TokenInterceptorService} from './shared/services/token-interceptor.service';
 import { AboutComponent } from './component/content/about/about.component';
 import {HttpModule} from '@angular/http';
-import { CapitalizePipe } from './shared/guard/pipes/capitalize.pipe';
+import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 import {CommonModule} from '@angular/common';
 import { ProfileComponent } from './component/content/profile/profile.component';
-import { TeacherComponent } from './component/content/teacher/teacher.component';
 import {AuthService} from './shared/services/auth.service';
 import {UserService} from './shared/services/user.service';
 import {BillService} from './shared/services/bill.service';
@@ -46,11 +45,10 @@ import { ProfileEditComponent } from './component/content/profile/profile-edit/p
 import { AddChildComponent } from './component/content/child/add-child/add-child.component';
 import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
 import { CoursesComponent } from './component/content/courses/courses.component';
-import { SessionsComponent } from './component/content/teacher/sessions/sessions.component';
-import { StudentDetailComponent } from './component/content/teacher/student-detail/student-detail.component';
-import { SessionDetailComponent } from './component/content/teacher/session-detail/session-detail.component';
 import { SessionService } from './shared/services/session.service';
 import {JwtInterceptorService} from './shared/services/jwt-interceptor.service';
+import {EntityService} from './shared/services/entity.service';
+import {SharedPipesModule} from './shared/pipes/shared-pipes.module';
 
 
 @NgModule({
@@ -64,20 +62,15 @@ import {JwtInterceptorService} from './shared/services/jwt-interceptor.service';
     RegisterComponent,
     MatchHeightDirective,
     AboutComponent,
-    CapitalizePipe,
     ProfileComponent,
-    TeacherComponent,
     ChildComponent,
     ProfileEditComponent,
     AddChildComponent,
     CourseRegistrationComponent,
     CoursesComponent,
-    SessionsComponent,
-    StudentDetailComponent,
-    SessionDetailComponent,
-    TeacherComponent
   ],
   imports: [
+    SharedPipesModule,
     BrowserModule,
     FormsModule,
     CommonModule,
@@ -95,6 +88,7 @@ import {JwtInterceptorService} from './shared/services/jwt-interceptor.service';
     AccordionModule.forRoot()
   ],
   providers: [
+    EntityService,
     AuthService,
     UserService,
     BillService,

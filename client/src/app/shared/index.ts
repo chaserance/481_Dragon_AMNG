@@ -1,2 +1,2 @@
 export * from './modules';
-export * from './guard/pipes/shared-pipes.module';
+export * from './pipes/shared-pipes.module';

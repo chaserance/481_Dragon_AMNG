@@ -1,0 +1,7 @@
+<ng-template #modal>
+  <div class="modal-body text-center">
+    <p>{{message}}</p>
+    <button type="button" class="btn btn-primary" (click)="check(true)" >{{yesMsg}}</button>
+    <button type="button" class="btn btn-danger" (click)="check(false)" >{{noMsg}}</button>
+  </div>
+</ng-template>

@@ -9,6 +9,12 @@ export class SidebarComponent {
   isActive = false;
   showMenu = '';
 
+  pushRightClass = 'push-right';
+  toggleSideBar() {
+    const dom: any = document.querySelector('body');
+    dom.classList.toggle(this.pushRightClass);
+  }
+
   eventCalled() {
     this.isActive = !this.isActive;
   }

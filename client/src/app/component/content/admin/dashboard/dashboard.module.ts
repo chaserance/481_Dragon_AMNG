@@ -20,7 +20,7 @@ import { DotComponent } from './components/clock/dot/dot.component';
     NgbCarouselModule.forRoot(),
     NgbAlertModule.forRoot(),
     DashboardRoutingModule,
-    StatModule
+    StatModule,
   ],
   declarations: [
     DashboardComponent,

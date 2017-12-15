@@ -9,6 +9,7 @@ export class Session extends HateoasResult {
   sessionDescription: string;
   period: DatePeriod;
   schedule: Schedule;
+
   teacher: User;
   course: Course;
 }
