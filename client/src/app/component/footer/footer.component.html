@@ -1,7 +1,7 @@
-<footer>
+<footer [ngClass]="{'padding-to-right': hasSidebar()}">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-8 foot-logo">
+      <div class="col-xs-12 col-sm-6 foot-logo">
         <a class="navbar-brand mybrand" href="/">
           <p><span class="Uppercase">A</span>merican</p>
           <p><span class="Uppercase">M</span>uslim</p>
@@ -9,14 +9,14 @@
           <p><span class="Uppercase">G</span>eneration</p>
         </a>
       </div>
-      <div class="col-xs-6 col-sm-2 about-list">
+      <div class="col-xs-6 col-sm-3 about-list">
         <h3>Organization</h3>
         <p><a routerLink="/about">About Us</a></p>
         <p><a>Careers</a></p>
         <p><a>FAQ</a></p>
         <p><a routerLink="/about">Contact Us</a></p>
       </div>
-      <div class="col-xs-6 col-sm-2 about-list">
+      <div class="col-xs-6 col-sm-3 about-list">
         <h3>Connect</h3>
         <p><i class="fa fa-facebook-official" style="font-size:20px"></i> <a>Facebook</a></p>
         <p><i class="fa fa-twitter" style="font-size:20px"></i> <a>Twitter</a></p>

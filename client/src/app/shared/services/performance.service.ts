@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Child} from '../../model/child';
 import {Session} from '../../model/session';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../../model/pageable-results';
 import {Performance} from '../../model/performance';
-import {map} from 'rxjs/operators';
-import {User} from '../../model/user';
+import {EntityService} from './entity.service';
 
 @Injectable()
-export class PerformanceService {
-
-  constructor(private http: HttpClient) { }
-
+export class PerformanceService extends EntityService<Performance> {
 
   /** GET Children BY Session **/
   getChildrenBySession(session: Session): Observable<PageableResults<Performance>> {

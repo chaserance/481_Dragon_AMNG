@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12">
+    <h3>Program Detail</h3>
+    <br/><br/>
+    <div *ngIf="program">
+      <div class="form-group">
+        <label for="programName">Program Name:</label>
+        <input type="text" class="form-control" name="programName" id="programName" [(ngModel)]="program.programName"/>
+      </div>
+      <div class="form-group">
+        <label for="programDescription">Description:</label>
+        <textarea type="text" class="form-control" name="programDescription" id="programDescription" [(ngModel)]="program.programDescription"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="programDescription">Enabled:</label>
+        <select type="text" class="form-control" name="programDescription" id="enabled" [(ngModel)]="program.enabled">
+          <option>true</option>
+          <option>false</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="container">
+      <button class="btn btn-success" (click)="onSave()">Save</button>
+      <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+    </div>
+
+    <hr/>
+
+    <div class="detail-wrapper">
+      <h4>Courses in Program:</h4>
+      <br/><br/>
+      <ng2-smart-table style="font-size: large"
+                       [settings]="settings" [source]="source"
+                       (deleteConfirm)="onDeleteConfirm($event)"
+                       (createConfirm)="onCreateConfirm($event)"
+                       (userRowSelect)="onUserRowSelect($event)"
+      >
+      </ng2-smart-table>
+    </div>
+  </div>
+</div>

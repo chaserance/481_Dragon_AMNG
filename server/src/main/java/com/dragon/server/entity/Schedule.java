@@ -1,24 +1,29 @@
 package com.dragon.server.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalTime;
+import java.util.Date;
 
 @Embeddable
 public class Schedule implements Serializable {
 
-    public static final String DAYS_OF_WEEK = "MTWRFSU";
+    public static final String PLACEHOLDER = "O";
+    public static final int DAY_LENGTH = 7;
     public static final char EMPTY = '_';
 
     @NotNull
     private byte days;
 
     @NotNull
-    private LocalTime startTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private Date startTime;
 
     @NotNull
-    private LocalTime endTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private Date endTime;
 
     public Schedule() {
     }
@@ -31,27 +36,27 @@ public class Schedule implements Serializable {
         this.days = encodeDays(days);
     }
 
-    public LocalTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public LocalTime getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
     private String decodeDays(byte code) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < DAYS_OF_WEEK.length(); i++) {
+        for(int i = 0; i < DAY_LENGTH; i++) {
             if((code & (1 << i)) != 0) {
-                sb.append(DAYS_OF_WEEK.charAt(i));
+                sb.append(PLACEHOLDER);
             }else{
                 sb.append(EMPTY);
             }
@@ -61,7 +66,7 @@ public class Schedule implements Serializable {
 
     private byte encodeDays(String days) {
         byte code = 0;
-        for(int i = 0; i < DAYS_OF_WEEK.length(); i++) {
+        for(int i = 0; i < DAY_LENGTH; i++) {
             if(days.charAt(i) != EMPTY) {
                 code |= (1 << i);
             }

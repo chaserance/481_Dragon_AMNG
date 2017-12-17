@@ -2,6 +2,17 @@ footer {
   background-color:  #66b077;
   padding: 15px;
   text-align: center;
+  position: relative;
+}
+
+.padding-to-right {
+  left: 235px;
+}
+
+@media screen and (max-width: 992px) {
+  footer {
+    left: 0px !important;
+  }
 }
 
 h3, p, a {

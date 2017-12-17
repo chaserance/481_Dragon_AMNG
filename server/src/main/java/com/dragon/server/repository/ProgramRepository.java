@@ -16,18 +16,18 @@ public interface ProgramRepository extends JpaRepository<Program, Long> {
     <S extends Program> S save(S s);
 
     @Override
-    //@PreAuthorize("hasAuthority('CAN_WRITE_PRGORAM')")
+    @PreAuthorize("hasAuthority('CAN_WRITE_PROGRAM')")
     void delete(Long aLong);
 
     @Override
-    //@PreAuthorize("hasAuthority('CAN_WRITE_PRGORAM')")
+    @PreAuthorize("hasAuthority('CAN_WRITE_PROGRAM')")
     void delete(Program program);
 
     @Override
-    @PreAuthorize("hasAuthority('CAN_WRITE_PRGORAM')")
+    @PreAuthorize("hasAuthority('CAN_WRITE_PROGRAM')")
     void delete(Iterable<? extends Program> iterable);
 
     @Override
-    @PreAuthorize("hasAuthority('CAN_WRITE_PRGORAM')")
+    @PreAuthorize("hasAuthority('CAN_WRITE_PROGRAM')")
     void deleteAll();
 }

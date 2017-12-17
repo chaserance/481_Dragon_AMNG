@@ -5,7 +5,7 @@
 
     <groupId>com.dragon</groupId>
     <artifactId>server</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>server</name>

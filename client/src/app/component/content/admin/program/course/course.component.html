@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12">
+    <h3>Course Detail</h3>
+    <br/><br/>
+    <div *ngIf="course">
+      <div class="form-group">
+        <label for="courseName">Course Name:</label>
+        <input type="text" class="form-control" name="courseName" id="courseName" [(ngModel)]="course.courseName"/>
+      </div>
+      <div class="form-group">
+        <label for="courseDescription">Description:</label>
+        <textarea type="text" class="form-control" name="courseDescription" id="courseDescription" [(ngModel)]="course.courseDescription"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="tuition">Tuition:</label>
+        <textarea type="text" class="form-control" name="courseDescription" id="tuition" [(ngModel)]="course.tuition"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="courseDescription">Enabled:</label>
+        <select type="text" class="form-control" name="courseDescription" id="enabled" [(ngModel)]="course.enabled">
+          <option>true</option>
+          <option>false</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="container">
+      <button class="btn btn-success" (click)="onSave()">Save</button>
+      <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+    </div>
+
+    <hr/>
+
+    <div class="detail-wrapper">
+      <h4>Sessions in Course:</h4>
+      <br/><br/>
+      <ng2-smart-table style="font-size: large"
+                       [settings]="settings" [source]="source"
+                       (deleteConfirm)="onDeleteConfirm($event)"
+                       (createConfirm)="onCreateConfirm($event)"
+                       (userRowSelect)="onUserRowSelect($event)"
+      >
+      </ng2-smart-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div [@routerTransition]>
+  <div class="row">
+    <div class="col col-xl-6 col-lg-12">
+      <app-page-header [base]="'admin'" [heading]="'Promotion'" [icon]="'fa-percent'"></app-page-header>
+      <ng2-smart-table style="font-size: large" [settings]="settings" [source]="source"
+                       (deleteConfirm)="onDeleteConfirm($event)"
+                       (createConfirm)="onCreateConfirm($event)"
+                       (editConfirm)="onSaveConfirm($event)"
+      >
+      </ng2-smart-table>
+    </div>
+  </div>
+</div>
+

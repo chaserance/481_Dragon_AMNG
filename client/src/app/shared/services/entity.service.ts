@@ -8,14 +8,18 @@ export class EntityService<T> {
 
   constructor(protected http: HttpClient) { }
 
-  getEntityByUrl(hash: string): Observable<T> {
-    const uri = this.decodeHash(hash);
+  getEntityByUrl(uri: string, isPlain?: boolean): Observable<T> {
+    if (!isPlain) {
+      uri = this.decodeHash(uri);
+    }
     return this.http.get<T>(uri)
       .pipe();
   }
 
-  getEntitiesByUrl(hash: string): Observable<PageableResults<T>> {
-    const uri = this.decodeHash(hash);
+  getEntitiesByUrl(uri: string, isPlain?: boolean): Observable<PageableResults<T>> {
+    if (!isPlain) {
+      uri = this.decodeHash(uri);
+    }
     return this.http.get<PageableResults<T>>(uri)
       .pipe();
   }

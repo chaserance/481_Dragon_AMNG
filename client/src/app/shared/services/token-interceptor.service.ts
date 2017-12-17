@@ -10,9 +10,8 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private injector: Injector) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     let type = 'application/json';
-    if (request.body && (typeof request.body === 'string')) {
+    if (this.isUrlUpdate(request)) {
       type = 'text/uri-list';
     }
     const auth = this.injector.get(AuthService);
@@ -25,6 +24,13 @@ export class TokenInterceptorService implements HttpInterceptor {
     });
 
     return next.handle(request);
+  }
+
+  private isUrlUpdate(request: HttpRequest<any>): boolean {
+    if (request.body) {
+      return request.body.toString().startsWith('http');
+    }
+    return false;
   }
 
 }

@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import {User} from '../../model/user';
 import {Observable} from 'rxjs/Observable';
 import {Pageable} from '../../model/pageable';
 import {PageableResults} from '../../model/pageable-results';
+import {EntityService} from './entity.service';
 
 @Injectable()
-export class UserService {
+export class UserService extends EntityService<User> {
 
   baseUrl = environment.baseUrl;
 
   private userUrl = this.baseUrl + '/api/users';
-
-  constructor(private http: HttpClient) { }
 
   /** Exist by Username **/
   isExist(email: string): Observable<any> {
@@ -26,6 +24,13 @@ export class UserService {
       .pipe();
   }
 
+  /** GET ALL Role Name **/
+  getByRoleName(roleName: string, pageable?: Pageable): Observable<PageableResults<User>> {
+    return this.http.get<PageableResults<User>>(this.userUrl + `/search/byRoleName?name=${roleName}` + (pageable ? pageable : ''))
+      .pipe();
+  }
+  /** GET ALL Admin **/
+
   /** GET ALL **/
   getUsers(pageable?: Pageable): Observable<PageableResults<User>> {
     return this.http.get<PageableResults<User>>(this.userUrl + (pageable ? pageable : ''))
@@ -36,10 +41,14 @@ export class UserService {
   updateUser(user: User, uri?: string): Observable<any> {
     let requestUri = user._links.self.href;
     let body: any = user;
-    // if (uri) {
-    //   requestUri = user._links.program.href;
-    //   body = uri;
-    // }
+    if (uri) {
+      if (uri.indexOf('role') !== -1) {
+        requestUri = user._links.roles.href;
+      } else {
+        requestUri = user._links.bill.href;
+      }
+        body = uri;
+    }
     return this.http.put(requestUri, body)
       .pipe();
   }

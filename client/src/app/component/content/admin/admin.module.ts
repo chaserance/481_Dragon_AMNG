@@ -4,6 +4,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import {AdminRoutingModule} from './admin-routing.module';
 import {AdminComponent} from './admin.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 @NgModule({
   imports: [

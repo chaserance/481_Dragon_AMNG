@@ -1,5 +1,6 @@
+
 export class Schedule {
   days: string;
-  startTime: string;
-  endTime: string;
+  startTime: Date;
+  endTime: Date;
 }

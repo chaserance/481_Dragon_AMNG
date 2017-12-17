@@ -12,7 +12,7 @@ export class Pageable {
   }
 
   public toString = (): string => {
-    let result = '?';
+    let result = '';
     if (this.page) {
       result += `&page=${this.page}`;
     }

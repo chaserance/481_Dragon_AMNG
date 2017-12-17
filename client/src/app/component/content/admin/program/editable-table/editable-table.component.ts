@@ -19,7 +19,7 @@ export class EditableTableComponent {
       editButtonContent: '<i class="fa fa-fw fa-edit"></i>',
       saveButtonContent: '<i class="fa fa-fw fa-save"></i>',
       cancelButtonContent: '<i class="btn btn-danger">Cancel</i>',
-      confirmEdit: true
+      confirmSave: true
     },
     delete: {
       deleteButtonContent: '<i class="fa fa-fw fa-trash-o"></i>',
@@ -28,15 +28,24 @@ export class EditableTableComponent {
     columns: {
       programName: {
         title: 'Name',
-        type: 'string',
+        type: 'text',
       },
       programDescription: {
         title: 'Description',
-        type: 'string',
+        type: 'text',
       },
       enabled: {
         title: 'Enabled',
-        type: 'boolean',
+        type: 'html',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: true, title: 'true'},
+              { value: false, title: 'false'}
+            ]
+          }
+        }
       }
     },
   };
@@ -77,7 +86,7 @@ export class EditableTableComponent {
     if (window.confirm('Are you sure you want to save?')) {
       // event.newData['name'] += ' + added in code';
       event.confirm.resolve(event.newData);
-      this.programService.updateProgram(event.data)
+      this.programService.updateProgram(event.newData)
         .subscribe(_ => this.getAllPrograms());
     } else {
       event.confirm.reject();
@@ -87,7 +96,6 @@ export class EditableTableComponent {
   onCreateConfirm(event) {
     console.log('Create.......');
     if (window.confirm('Are you sure you want to create?')) {
-      event.newData['enabled'] = true;
       event.confirm.resolve(event.newData);
       console.log(event.newData);
       this.programService.addProgram(event.newData)

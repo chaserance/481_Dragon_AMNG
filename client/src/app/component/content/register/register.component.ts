@@ -9,8 +9,6 @@ import { RequestExceptionHandler } from '../../../error/request-exception-handle
 import { State } from '../../../model/state';
 import {RegisterRequest} from '../../../model/register-request';
 import {ValidatorsService} from '../../../shared/services/validators.service';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
 import {UserService} from '../../../shared/services/user.service';
 
 @Component({

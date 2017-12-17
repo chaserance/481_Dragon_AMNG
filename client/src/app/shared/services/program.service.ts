@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Program} from '../../model/program';
-import {tap} from 'rxjs/operators';
 import {PageableResults} from '../../model/pageable-results';
 import {Pageable} from '../../model/pageable';
+import {EntityService} from './entity.service';
 
 @Injectable()
-export class ProgramService {
+export class ProgramService extends EntityService<Program> {
   baseUrl = environment.baseUrl;
 
-  private programsUrl = this.baseUrl + '/api/programs/';
-
-  constructor(private http: HttpClient) { }
+  private programsUrl = this.baseUrl + '/api/programs?';
 
   /** GET ALL **/
   getPrograms(pageable?: Pageable): Observable<PageableResults<Program>> {
@@ -24,6 +21,8 @@ export class ProgramService {
 
   /** POST **/
   addProgram(program: Program): Observable<Program> {
+    program.programDescription = 'N/A';
+    program.enabled = program.enabled ? program.enabled : false;
     return this.http.post<Program>(this.programsUrl, program)
       .pipe(
       );

@@ -1,0 +1,64 @@
+<div class="row vdivide">
+  <div class="col col-xl-6 col-lg-12" [appMatchHeight]="'sub-opt'">
+    <h3>Session Detail</h3>
+    <br/><br/>
+    <div *ngIf="session">
+      <div class="form-group">
+        <label for="sessionName">Name:</label>
+        <input type="text" class="form-control" name="sessionName" id="sessionName" [(ngModel)]="session.sessionName"/>
+      </div>
+      <div class="form-group">
+        <label for="sessionDescription">Description:</label>
+        <textarea type="text" class="form-control" name="sessionDescription" id="sessionDescription" [(ngModel)]="session.sessionDescription"></textarea>
+      </div>
+
+
+      <div class="form-group">
+        <label>Teacher:</label>
+        <select *ngIf="session.teacher"
+                [(ngModel)]="session.teacher._links.self.href" class="form-control" >
+          <option *ngFor="let t of allTeachers" [value]="t._links.self.href">
+            {{t.firstname}} {{t.lastname}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <h4>Day in Week</h4>
+        <div class="btn-group">
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[0]" btnCheckbox>Mon</label>
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[1]" btnCheckbox>Tue</label>
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[2]" btnCheckbox>Wed</label>
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[3]" btnCheckbox>Thu</label>
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[4]" btnCheckbox>Fri</label>
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[5]" btnCheckbox>Sat</label>
+          <label class="btn btn-success" [(ngModel)]="daysInWeek.days[6]" btnCheckbox>Sun</label>
+        </div>
+      </div>
+      <div class="col-xs-12 col-12 col-md-6 form-group sub-opt">
+        <h4>Session period:</h4>
+        <label>Start Date:</label>
+        <input type="text" class="form-control" placeholder="Start Date" bsDatepicker [(ngModel)]="session.period.startDate" />
+        <label>End Date:</label>
+        <input type="text" class="form-control" placeholder="End Date" bsDatepicker [(ngModel)]="session.period.endDate" />
+      </div>
+
+      <div class="col-xs-12 col-12 col-md-6 form-group sub-opt">
+        <h4>Schedule:</h4>
+        <label>Start Time:</label>
+        <timepicker [(ngModel)]="session.schedule.startTime"
+                    [mousewheel]="true"
+                    [arrowkeys]="true"></timepicker>
+        <label>End Time:</label>
+        <timepicker [(ngModel)]="session.schedule.endTime"
+                    [mousewheel]="true"
+                    [arrowkeys]="true"></timepicker>
+      </div>
+    </div>
+
+    <div class="col-xs-12 form-group">
+      <button class="btn btn-success" (click)="onSave()">Save</button>
+      <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+    </div>
+  </div>
+</div>

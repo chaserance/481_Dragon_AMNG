@@ -3,38 +3,38 @@ package com.dragon.server.entity;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Embeddable
 public class DatePeriod implements Serializable {
 
     @NotNull
-    LocalDate startDate;
+    Date startDate;
 
     @NotNull
-    LocalDate endDate;
+    Date endDate;
 
     public DatePeriod() {
     }
 
-    public DatePeriod(LocalDate startDate, LocalDate endDate) {
+    public DatePeriod(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 }

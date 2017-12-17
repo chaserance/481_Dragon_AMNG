@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition} from '../../../../animation/router.animation';
 import {UserService} from '../../../../shared/services/user.service';
+import {User} from '../../../../model/user';
 
 @Component({
     selector: 'app-charts',
@@ -9,6 +10,9 @@ import {UserService} from '../../../../shared/services/user.service';
     animations: [routerTransition]
 })
 export class ChartsComponent implements OnInit {
+
+  users: User[];
+
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
@@ -161,5 +165,12 @@ export class ChartsComponent implements OnInit {
 
     constructor(private userService: UserService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+      this.getUsers();
+    }
+
+    getUsers() {
+      this.userService.getUsers()
+        .subscribe(u => this.users = u._embedded.result_array);
+    }
 }

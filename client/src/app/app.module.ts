@@ -17,7 +17,7 @@ import {
   BsDropdownModule, CarouselModule, CollapseModule, ProgressbarModule, TabsModule,
   TooltipModule, AccordionModule
 } from 'ngx-bootstrap';
-import { MatchHeightDirective } from './directive/match-height.directive';
+import { MatchHeightDirective } from './shared/directive/match-height.directive';
 import {TokenInterceptorService} from './shared/services/token-interceptor.service';
 import { AboutComponent } from './component/content/about/about.component';
 import {HttpModule} from '@angular/http';
@@ -49,6 +49,8 @@ import { SessionService } from './shared/services/session.service';
 import {JwtInterceptorService} from './shared/services/jwt-interceptor.service';
 import {EntityService} from './shared/services/entity.service';
 import {SharedPipesModule} from './shared/pipes/shared-pipes.module';
+import {SharedDirectiveModule} from './shared/directive/shared-directive.module';
+
 
 
 @NgModule({
@@ -60,7 +62,6 @@ import {SharedPipesModule} from './shared/pipes/shared-pipes.module';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    MatchHeightDirective,
     AboutComponent,
     ProfileComponent,
     ChildComponent,
@@ -70,6 +71,7 @@ import {SharedPipesModule} from './shared/pipes/shared-pipes.module';
     CoursesComponent,
   ],
   imports: [
+    SharedDirectiveModule,
     SharedPipesModule,
     BrowserModule,
     FormsModule,

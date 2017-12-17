@@ -11,11 +11,8 @@ const routes: Routes = [
       { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
       { path: 'programs', loadChildren: './program/program.module#ProgramModule' },
-      // { path: 'forms', loadChildren: './form/form.module#FormModule' },
-      // { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
-      // { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
-      // { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-      // { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
+      { path: 'users', loadChildren: './user-management/user-management.module#UserManagementModule' },
+      { path: 'promotions', loadChildren: './promotion/promotion.module#PromotionModule' },
     ]
   }
 ];

@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import {Pageable} from '../../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../../model/pageable-results';
 import {Promotion} from '../../model/promotion';
 import {Bill} from '../../model/bill';
+import {EntityService} from './entity.service';
 
 @Injectable()
-export class PromotionService {
+export class PromotionService extends EntityService<Promotion> {
   baseUrl = environment.baseUrl;
 
-  private promotionsUrl = this.baseUrl + '/api/promotions/';
-
-  constructor(private http: HttpClient) { }
+  private promotionsUrl = this.baseUrl + '/api/promotions?';
 
   /** GET ALL **/
   getPromotions(pageable?: Pageable): Observable<PageableResults<Promotion>> {

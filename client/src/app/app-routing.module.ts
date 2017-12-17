@@ -15,7 +15,6 @@ import { ChildComponent } from './component/content/child/child.component';
 import { AddChildComponent } from './component/content/child/add-child/add-child.component';
 import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
 import { CoursesComponent } from './component/content/courses/courses.component';
-import { SessionDetailComponent } from './component/content/teacher/session-detail/session-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

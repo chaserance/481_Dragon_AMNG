@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
 import {Pageable} from '../../model/pageable';
 import {Observable} from 'rxjs/Observable';
 import {PageableResults} from '../../model/pageable-results';
 import {Privilege} from '../../model/privilege';
 import {Role} from '../../model/role';
+import {EntityService} from './entity.service';
 
 @Injectable()
-export class PrivilegeService {
+export class PrivilegeService extends EntityService<Privilege> {
   baseUrl = environment.baseUrl;
 
-  private privilegesUrl = this.baseUrl + '/api/privileges/';
-
-  constructor(private http: HttpClient) { }
+  private privilegesUrl = this.baseUrl + '/api/privileges?';
 
   /** GET ALL **/
   getPrivileges(pageable?: Pageable): Observable<PageableResults<Privilege>> {
