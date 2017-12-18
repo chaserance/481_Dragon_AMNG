@@ -4,6 +4,7 @@ import com.dragon.server.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -23,6 +24,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @RestResource(path="byRoleName", rel="byRoleName")
     Page<User> findByRoles_Name(@Param("name") String name, Pageable pageable);
+
+    @RestResource(path="me", rel="me")
+    @Query("select u from User u where u.username = ?#{authentication.name}")
+    User me();
 
     @Override
     @PreAuthorize("hasAuthority('CAN_READ_USER')")

@@ -34,14 +34,6 @@ public class UserController {
     private SessionRepository sessionRepository;
 
 
-    @RequestMapping(value = "/users/me", method = RequestMethod.GET)
-    public void me(Authentication authentication, HttpServletResponse response) throws IOException {
-        User me = userRepository.findByUsername(authentication.getName()).get();
-        Long id = me.getId();
-        String userUri = "/api/users/" + id;
-        response.sendRedirect(userUri);
-    }
-
     @RequestMapping(value = "/users/{id}/sessions", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity usersSessions(@PathVariable(name = "id") Long id) {
         List<Session> sessionList = sessionRepository.findByTeacherId(id);

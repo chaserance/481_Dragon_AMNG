@@ -26,8 +26,8 @@ spring:
     username: whiletrue
     password: emichCS3
 #    url: jdbc:mysql://localhost/prototype?characterEncoding=utf8
-#    username: xxx
-#    password: xxx
+#    username: root
+#    password: Liuli512104
 
   # ===============================
   # = SPRING DATA REST CONFIG
