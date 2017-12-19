@@ -3,6 +3,7 @@
     <h3>Course Detail</h3>
     <br/><br/>
     <div *ngIf="course">
+      <h4>{{course.courseName}}</h4>
       <div class="form-group">
         <label for="courseName">Course Name:</label>
         <input type="text" class="form-control" name="courseName" id="courseName" [(ngModel)]="course.courseName"/>

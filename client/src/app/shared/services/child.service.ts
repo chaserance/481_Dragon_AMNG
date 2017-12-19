@@ -7,6 +7,7 @@ import {Child} from '../../model/child';
 import {User} from '../../model/user';
 import {Performance} from '../../model/performance';
 import {EntityService} from './entity.service';
+import {StudentLevel} from '../../model/student-level';
 
 @Injectable()
 export class ChildService extends EntityService<Child> {
@@ -34,17 +35,28 @@ export class ChildService extends EntityService<Child> {
   }
 
   /** POST **/
-  addChild(child: Child): Observable<Child> {
-    return this.http.post<Child>(this.childrenUrl, child)
-      .pipe();
+  addChild(child: Child, user?: User): Observable<Child> {
+    child.entryLevel = StudentLevel.FIRST;
+    child.currentLevel = StudentLevel.FIRST;
+    child.dob = new Date();
+    let rto = this.http.post<Child>(this.childrenUrl, child);
+    if (user) {
+      rto = rto.delayWhen(c => this.updateChild(c, user._links.self.href));
+    }
+    return rto;
   }
 
   /** PUT **/
   updateChild(child: Child, uri?: string): Observable<any> {
-    const requestUri = child._links.self.href;
-    const body: any = child;
-    return this.http.put(requestUri, body)
-      .pipe();
+    let requestUri = child._links.self.href;
+    let body: any = child;
+    if (uri) {
+      requestUri = child._links.user.href;
+      body = uri;
+    }
+    return this.http.put<Child>(requestUri, body)
+      .pipe(
+      );
   }
 
   /** DELETE **/

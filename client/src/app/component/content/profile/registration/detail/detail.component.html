@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12">
+    <h3>Program Detail</h3>
+    <br/><br/>
+    <div *ngIf="program">
+      <div class="form-group">
+        <label>Program Name:</label>
+        <p>{{program.programName}}</p>
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <p>{{program.programDescription}}</p>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="detail-wrapper">
+      <h4>Courses in Program:</h4>
+      <br/><br/>
+      <ng2-smart-table style="font-size: large"
+                       [settings]="settings" [source]="source"
+                       (userRowSelect)="onUserRowSelect($event)"
+      >
+      </ng2-smart-table>
+    </div>
+  </div>
+</div>

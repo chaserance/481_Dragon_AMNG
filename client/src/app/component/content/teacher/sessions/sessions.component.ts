@@ -17,13 +17,13 @@ export class SessionsComponent implements OnInit {
 
   constructor(private sessionService: SessionService,
               private userService: UserService,
-              private performanceService: PerformanceService) { }
+              private performanceService: PerformanceService) {}
 
   getSessions(): void {
-    this.userService.getMe().subscribe(user =>
+    this.userService.getMe().subscribe(user => { console.log(user);
       this.sessionService.getSessionsByUser(user)
-          .subscribe(sessions => this.sessions = sessions._embedded.result_array)
-    );
+        .subscribe(sessions => this.sessions = sessions._embedded.result_array);
+    });
   }
 
   getPerformancesBySession(session: Session) {

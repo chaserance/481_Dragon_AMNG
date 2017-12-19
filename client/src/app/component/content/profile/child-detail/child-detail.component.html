@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12">
+    <h3>Child Detail</h3>
+    <br/><br/>
+    <div *ngIf="child">
+      <div class="form-group">
+        <label>First Name:</label>
+        <p>{{child.firstname}}</p>
+      </div>
+      <div class="form-group">
+        <label>Last Name:</label>
+        <p>{{child.lastname}}</p>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gender:</label>
+        <p>{{child.gender}}</p>
+      </div>
+
+      <div class="form-group">
+        <label>Date of Birth:</label>
+        <input type="text" class="form-control" placeholder="Start Date" bsDatepicker [(ngModel)]="child.dob" />
+      </div>
+
+      <div class="form-group">
+        <label>Beginning Level:</label>
+        <p>{{child.entryLevel}}</p>
+      </div>
+      <div class="form-group">
+        <label>Current Level:</label>
+        <p>{{child.currentLevel}}</p>
+      </div>
+    </div>
+
+    <div class="col-xs-12 form-group">
+      <button class="btn btn-success" (click)="onSave()">Save</button>
+      <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+    </div>
+
+    <hr/>
+
+    <div>
+      <h4>Registered Session</h4>
+      <table class="table table table-hover">
+        <thead>
+          <tr>
+            <th>Session Name</th>
+            <th>Course</th>
+            <th>Program</th>
+            <th>Feedback</th>
+            <th>Grade</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="sessionReady">
+          <tr *ngFor="let p of performances">
+            <td>{{p.session.sessionName}}</td>
+            <td>{{p.session.course.courseName}}</td>
+            <td>{{p.session.course.program.programName}}</td>
+            <td>{{p.feedBack}}</td>
+            <td>{{p.grade}}</td>
+            <td><button class="btn btn-danger" (click)="onDrop(p)">Drop</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

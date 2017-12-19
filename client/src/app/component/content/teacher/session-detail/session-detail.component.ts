@@ -45,7 +45,6 @@ export class SessionDetailComponent implements OnInit {
 
   getSession(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.sessionService.getEntityByUrl(id)
       .subscribe(session => {
         this.session = session;

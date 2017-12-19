@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {Pageable} from '../../model/pageable';
 import {PageableResults} from '../../model/pageable-results';
 import {EntityService} from './entity.service';
+import {tap} from 'rxjs/operators';
 
 @Injectable()
 export class UserService extends EntityService<User> {
@@ -15,12 +16,12 @@ export class UserService extends EntityService<User> {
 
   /** Exist by Username **/
   isExist(email: string): Observable<any> {
-    return this.http.get(this.baseUrl + `/api/auth/register/exist?email=${email}`);
+    return this.http.get(this.baseUrl + `/exist?email=${email}`);
   }
 
   /** GET ME **/
   getMe(): Observable<User> {
-    return this.http.get<User>(this.userUrl + '/me')
+    return this.http.get<User>(this.userUrl + '/search/me')
       .pipe();
   }
 

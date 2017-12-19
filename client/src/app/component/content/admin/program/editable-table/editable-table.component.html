@@ -1,9 +1,0 @@
-<div>
-  <ng2-smart-table [settings]="settings" [source]="source"
-                   (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)" (createConfirm)="onCreateConfirm($event)"
-                  >
-  </ng2-smart-table>
-  <app-confirm-modal #md [message]="modalMessage" [yesMsg]="'Yes'" [noMsg]="'No'"
-                     (confirm)="onConfirm($event)" (cancel)="onCancel($event)"
-  ></app-confirm-modal>
-</div>

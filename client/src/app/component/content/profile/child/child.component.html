@@ -1,0 +1,11 @@
+<div class="container">
+  <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+</div>
+<div *ngIf="user">
+  <ng2-smart-table style="font-size: large" [settings]="settings" [source]="source"
+                   (deleteConfirm)="onDeleteConfirm($event)"
+                   (createConfirm)="onCreateConfirm($event)"
+                   (userRowSelect)="onUserRowSelect($event)">
+  </ng2-smart-table>
+</div>
+

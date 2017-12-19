@@ -100,11 +100,10 @@ public class SessionToChildController {
     @PreAuthorize("@SecurityServiceImpl.canUpdateCurrentPerformance(#childId, #sessionId, principal.username) or hasAuthority('CAN_WRITE_PERFORMANCE')")
     @RequestMapping(method = RequestMethod.PUT, path = "/{childId}")
     public ResponseEntity updatePerformance(@PathVariable(value = "childId") Long childId, @PathVariable(value = "sessionId") Long sessionId, @RequestBody PerformanceDto dto) {
-        EducationalPerformance performance = verifyPerformance(childId, sessionId);
+        EducationalPerformance performance = verifyPerformance(sessionId, childId);
         performance.setFeedBack(dto.getFeedBack());
         performance.setGrade(dto.getGrade());
         educationalPerformanceRepository.save(performance);
-        EducationalPerformance performance2 = verifyPerformance(childId, sessionId);
         return ResponseEntity.noContent().build();
     }
 

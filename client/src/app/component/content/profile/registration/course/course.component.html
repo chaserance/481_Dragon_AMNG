@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12">
+    <h3>Course Detail</h3>
+    <br/><br/>
+    <div *ngIf="course">
+      <div class="form-group">
+        <label>Course Name:</label>
+        <p>{{course.courseName}}</p>
+      </div>
+      <div class="form-group">
+        <label>Course Description:</label>
+        <p>{{course.courseDescription}}</p>
+      </div>
+      <div class="form-group">
+        <label>Tuition:</label>
+        <p>{{course.tuition}}</p>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class="detail-wrapper">
+      <h4>Sessions in Course:</h4>
+      <br/><br/>
+      <ng2-smart-table style="font-size: large"
+                       [settings]="settings" [source]="source"
+      >
+      </ng2-smart-table>
+    </div>
+  </div>
+</div>

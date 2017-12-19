@@ -25,6 +25,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,7 +77,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected JwtTokenAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
         List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_REGISTER_ENTRY_POINT);
-        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENTRY_POINT);
+        List<RequestMatcher> matchersToSkip = Arrays.asList(
+                new AntPathRequestMatcher(PROGRAMS_ENDPOINT, HttpMethod.GET.toString()),
+                new AntPathRequestMatcher(COURSES_ENDPOINT, HttpMethod.GET.toString()),
+                new AntPathRequestMatcher(PROMOTION_ENDPOINT, HttpMethod.GET.toString())
+        );
+        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(
+                pathsToSkip,
+                matchersToSkip,
+                TOKEN_BASED_AUTH_ENTRY_POINT);
         JwtTokenAuthenticationProcessingFilter filter
                 = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher);
         filter.setAuthenticationManager(this.authenticationManager);

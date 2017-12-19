@@ -6,7 +6,6 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {ConfirmModalModule} from '../../../../shared/modules/confirm-modal/confirm-modal.module';
 import { SessionComponent } from './session/session.component';
 import {ProgramComponent} from './program.component';
-import {EditableTableComponent} from './editable-table/editable-table.component';
 import { ListComponent } from './list/list.component';
 import { CourseComponent } from './course/course.component';
 import {SharedPipesModule} from '../../../../shared/pipes/shared-pipes.module';
@@ -33,7 +32,6 @@ import {SharedDirectiveModule} from '../../../../shared/directive/shared-directi
   declarations: [
     ProgramComponent,
     SessionComponent,
-    EditableTableComponent,
     ListComponent,
     CourseComponent,
     DetailComponent,

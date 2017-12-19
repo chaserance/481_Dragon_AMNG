@@ -1,0 +1,21 @@
+<div *ngIf="user" class="header">
+  <h1>Welcome, Dear {{user.firstname}} !</h1>
+</div>
+<div class="tab">
+  <tabset>
+    <tab heading="Overview">
+      <br/>
+      <ul>
+        This is an overview page.
+        <hr/>
+        <button class="btn btn-primary" routerLink="/profile/registration">Registration Courses</button>
+      </ul>
+    </tab>
+    <tab heading="Account Setting">
+      <app-setting></app-setting>
+    </tab>
+    <tab heading="Children">
+      <app-child [_user]="user"></app-child>
+    </tab>
+  </tabset>
+</div>

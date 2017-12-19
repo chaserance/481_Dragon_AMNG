@@ -88,7 +88,7 @@ public class AuthenticationController {
         return new ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = "${jwt.route.register} + /exist", method = RequestMethod.GET)
+    @RequestMapping(value = "/exist", method = RequestMethod.GET)
     public Map isExist(@RequestParam(value="email") String email) {
         Optional<User> user = userService.findByUsername(email);
         Map<String, Boolean> map = new HashMap<>();

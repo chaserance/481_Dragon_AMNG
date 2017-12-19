@@ -17,13 +17,10 @@ import {
   BsDropdownModule, CarouselModule, CollapseModule, ProgressbarModule, TabsModule,
   TooltipModule, AccordionModule
 } from 'ngx-bootstrap';
-import { MatchHeightDirective } from './shared/directive/match-height.directive';
 import {TokenInterceptorService} from './shared/services/token-interceptor.service';
 import { AboutComponent } from './component/content/about/about.component';
 import {HttpModule} from '@angular/http';
-import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 import {CommonModule} from '@angular/common';
-import { ProfileComponent } from './component/content/profile/profile.component';
 import {AuthService} from './shared/services/auth.service';
 import {UserService} from './shared/services/user.service';
 import {BillService} from './shared/services/bill.service';
@@ -40,11 +37,6 @@ import {LoginActiveAuthGuard} from './shared/guard/login-active.authguard';
 import {CanActivateAuthGuard} from './shared/guard/can-active.authguard';
 import {TeacherAuthguard} from './shared/guard/teacher.authguard';
 import {AdminAuthguard} from './shared/guard/admin.authguard';
-import { ChildComponent } from './component/content/child/child.component';
-import { ProfileEditComponent } from './component/content/profile/profile-edit/profile-edit.component';
-import { AddChildComponent } from './component/content/child/add-child/add-child.component';
-import { CourseRegistrationComponent } from './component/content/courses/course-registration/course-registration.component';
-import { CoursesComponent } from './component/content/courses/courses.component';
 import { SessionService } from './shared/services/session.service';
 import {JwtInterceptorService} from './shared/services/jwt-interceptor.service';
 import {EntityService} from './shared/services/entity.service';
@@ -63,12 +55,6 @@ import {SharedDirectiveModule} from './shared/directive/shared-directive.module'
     HomeComponent,
     RegisterComponent,
     AboutComponent,
-    ProfileComponent,
-    ChildComponent,
-    ProfileEditComponent,
-    AddChildComponent,
-    CourseRegistrationComponent,
-    CoursesComponent,
   ],
   imports: [
     SharedDirectiveModule,

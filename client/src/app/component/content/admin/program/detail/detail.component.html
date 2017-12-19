@@ -3,6 +3,7 @@
     <h3>Program Detail</h3>
     <br/><br/>
     <div *ngIf="program">
+      <h4>{{program.programName}}</h4>
       <div class="form-group">
         <label for="programName">Program Name:</label>
         <input type="text" class="form-control" name="programName" id="programName" [(ngModel)]="program.programName"/>

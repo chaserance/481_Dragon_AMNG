@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col col-xl-6 col-lg-12">
+    <h3>User Info:</h3>
+    <br/><br/>
+    <div *ngIf="user">
+      <div class="form-group">
+        <label>First Name:</label>
+        <p>{{user.firstname}}</p>
+      </div>
+      <div class="form-group">
+        <label>Last Name:</label>
+        <p>{{user.lastname}}</p>
+      </div>
+      <div class="form-group">
+        <label>Email / Username:</label>
+        <p>{{user.username}}</p>
+      </div>
+
+      <div class="form-group">
+        <label>Phone number:</label>
+        <input class="form-control" [(ngModel)]="user.phoneNumber">
+      </div>
+
+      <div class="form-group">
+        <label>Address:</label>
+        <h5>Address line 1</h5>
+        <input class="form-control" [(ngModel)]="user.address.addressLine1"/>
+        <h5>Address line 2</h5>
+        <input class="form-control" [(ngModel)]="user.address.addressLine2"/>
+        <h5>City</h5>
+        <input class="form-control" [(ngModel)]="user.address.city"/>
+        <h5>State</h5>
+        <select class="form-control" [(ngModel)]="user.address.state">
+          <option *ngFor="let state of stateKeys()" value="{{state}}">{{state | capitalize}}</option>
+        </select>
+        <h5>Zip Code</h5>
+        <input class="form-control" [(ngModel)]="user.address.zipCode"/>
+      </div>
+    </div>
+
+    <div class="container">
+      <button class="btn btn-success" (click)="onSave()">Save</button>
+    </div>
+
+    <hr/>
+  </div>
+</div>

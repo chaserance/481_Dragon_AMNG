@@ -17,7 +17,7 @@ export class PerformanceService extends EntityService<Performance> {
 
   /** GET Children BY Session **/
   getSessionsByChild(child: Child): Observable<PageableResults<Performance>> {
-    return this.http.get<PageableResults<Performance>>(child._links.privileges.href)
+    return this.http.get<PageableResults<Performance>>(child._links.performances.href)
       .pipe();
   }
 
