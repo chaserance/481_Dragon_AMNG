@@ -14,6 +14,9 @@ AMNG Web Application.
 - Java 1.8
 - Maven
 
+## Live Demo
+Link: https://prototype.whiletrue.cc
+
 ## Quick Start
 
 ### Front end
